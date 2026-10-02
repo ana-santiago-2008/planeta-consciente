@@ -1,4 +1,4 @@
-# v0 sandbox internal files
+# v0 sandbox internals and deployment
 __v0_runtime_loader.js
 __v0_devtools.tsx
 __v0_jsx-dev-runtime.ts
@@ -6,10 +6,42 @@ __v0_jsx-dev-runtime.ts
 .v0-trash/
 .vercel/
 
-# Environment variables
-.env*.local
-
-# Common ignores
-node_modules
+# Dependencies, build output, and caches
+node_modules/
 .next/
+out/
+dist/
+.cache/
+.parcel-cache/
+.pnpm-store/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# Logs and runtime files
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.pid
+*.seed
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Editor and operating system
 .DS_Store
+.vscode-test/
+
+# Other package manager artifacts
+.npm/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
