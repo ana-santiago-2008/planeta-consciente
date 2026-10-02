@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import { assetPath } from '@/lib/asset-path'
 import { ArrowDown, Sparkles } from 'lucide-react'
 
 export function Hero() {
   return (
     <section id="inicio" className="relative flex min-h-[100svh] items-center overflow-hidden">
       <Image
-        src="/images/hero-planeta.png"
+        src={assetPath('/images/hero-planeta.png')}
         alt="Floresta tropical verde encontrando um rio azul limpo ao amanhecer"
         fill
         priority

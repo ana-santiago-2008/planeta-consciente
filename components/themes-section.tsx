@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Check, Droplets, TreePine, Recycle, ThermometerSun, Leaf } from 'lucide-react'
 import { topics } from '@/lib/site-data'
 import { ThemeChart, ChartLegend } from '@/components/theme-chart'
+import { assetPath } from '@/lib/asset-path'
 import { cn } from '@/lib/utils'
 
 const icons: Record<string, typeof Droplets> = {
@@ -62,7 +63,7 @@ export function ThemesSection() {
         <div className="mt-10 grid items-stretch gap-6 lg:grid-cols-2">
           <div className="relative min-h-72 overflow-hidden rounded-3xl shadow-sm">
             <Image
-              src={topic.image || '/placeholder.svg'}
+              src={assetPath(topic.image || '/placeholder.svg')}
               alt={`Ilustração sobre ${topic.title}`}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"

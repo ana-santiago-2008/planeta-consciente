@@ -26,6 +26,10 @@ pnpm build
 pnpm start
 ```
 
+## Publicação no GitHub Pages
+
+O workflow em `.github/workflows/deploy.yml` gera uma exportação estática e publica automaticamente cada atualização da branch `main` em [https://ana-santiago-2008.github.io/planeta-consciente/](https://ana-santiago-2008.github.io/planeta-consciente/). Para a primeira publicação, em **Settings → Pages**, selecione **GitHub Actions** como origem de publicação. O diretório `out/` é gerado no build e enviado pelo workflow; ele não precisa ser commitado.
+
 ## Estrutura
 
 - `app/`: entrada da página, layout e estilos globais.
