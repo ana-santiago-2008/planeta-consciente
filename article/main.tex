@@ -1,0 +1,224 @@
+\documentclass[article,12pt,oneside,a4paper,brazil]{abntex2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{setspace}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=blue,
+  pdftitle={Protocolo de auditoria da rastreabilidade de informação ambiental em um site educativo},
+  pdfauthor={Ana Santiago},
+  pdfsubject={Protocolo preliminar de estudo de caso em Ciência da Computação},
+  pdfkeywords={educação ambiental, rastreabilidade, estudo de caso, qualidade da informação}
+}
+
+\titulo{Protocolo de auditoria da rastreabilidade de informação ambiental em um site educativo}
+\autor{Ana Santiago}
+\local{Brasil}
+\data{2026}
+\newcommand{\paperversion}{0.1.0-protocolo.1}
+
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.15cm}
+\OnehalfSpacing
+
+\begin{document}
+\maketitle
+
+\begin{resumo}
+Este artigo apresenta um protocolo preliminar para auditar a rastreabilidade de afirmações ambientais em um site educativo brasileiro, o Planeta Consciente. O objetivo é descrever como números, enunciados factuais e itens apresentados como notícias podem ser associados a fontes identificáveis, atuais e adequadas ao escopo da afirmação. Propõe-se um estudo de caso documental, sem recrutamento de participantes, sobre uma versão identificada do repositório. A unidade de análise será cada afirmação verificável ou item editorial; um manual de codificação registrará tipo, fonte indicada, URL, data, recorte, unidade e correspondência entre a fonte e o enunciado. A análise distinguirá ausência de referência, referência não rastreável, evidência parcial e evidência suficiente segundo critérios definidos antes da codificação. Este manuscrito descreve pergunta, corpus, procedimento, salvaguardas e plano de análise; não apresenta resultados de verificação factual nem efeitos de aprendizagem. O protocolo prioriza transparência, reprodutibilidade e fontes públicas brasileiras. Estudos posteriores com usuários, necessários para medir compreensão ou aprendizagem, dependerão de desenho próprio, avaliação ética institucional e plano de proteção de dados.
+
+\vspace{\onelineskip}
+\noindent\textbf{Palavras-chave}: educação ambiental; rastreabilidade da informação; estudo de caso; qualidade da informação; engenharia de software.
+\end{resumo}
+
+\begin{resumo}[Abstract]
+This article presents a preliminary protocol to audit the traceability of environmental claims on Planeta Consciente, a Brazilian educational website. The objective is to describe whether numerical claims, factual statements, and items presented as news can be linked to identifiable, current, and scope-appropriate sources. We propose a documentary case study, with no participant recruitment, on a versioned repository snapshot. The unit of analysis is each verifiable claim or editorial item. A coding manual will record claim type, cited source, URL, date, scope, unit, and correspondence between evidence and wording. The analysis will distinguish missing references, untraceable references, partial evidence, and sufficient evidence under criteria defined before coding. This manuscript specifies the research question, corpus, procedure, safeguards, and analysis plan; it reports no factual verification results or learning effects. The protocol prioritizes transparency, reproducibility, and Brazilian public sources. Future user studies to measure comprehension or learning require a separate design, institutional ethics review, and data protection plan.
+
+\vspace{\onelineskip}
+\noindent\textbf{Keywords}: environmental education; information traceability; case study; information quality; software engineering.
+\end{resumo}
+
+\textbf{Estado do manuscrito}: protocolo preliminar, versão \paperversion. Ainda não é relato de resultados nem submissão final. Antes de submeter, confirmar vínculo institucional, regras do veículo, versão integral licenciada das normas ABNT aplicáveis, autoria e revisão humana de todo o conteúdo.
+
+\textbf{Declaração de uso de inteligência artificial}: ferramentas OpenAI Codex foram usadas para apoiar a estrutura inicial deste protocolo, a revisão de referências públicas e a preparação do código LaTeX e do fluxo de compilação. A autora deve verificar cada afirmação, fonte, interpretação normativa e decisão metodológica e assumir responsabilidade pelo texto final. Atualizar esta declaração conforme a política da instituição, do veículo e, quando aplicável, as diretrizes vigentes do CNPq.
+
+\section{Introdução}
+
+Sites de educação ambiental apresentam afirmações textuais, valores em gráficos e informações geográficas em uma mesma experiência. Para que essas representações possam ser verificadas, o leitor precisa identificar de onde veio cada afirmação, a que período e unidade ela se refere e se a fonte sustenta exatamente o enunciado. A rastreabilidade é, portanto, uma propriedade documental que pode ser auditada antes de se afirmar qualquer efeito educativo.
+
+O Planeta Consciente é um site em português brasileiro que organiza temas ambientais, gráficos, ações cotidianas, curiosidades, um mapa dos biomas e uma seção intitulada “Notícias”. A leitura exploratória do repositório identificou conteúdos quantitativos cujas notas usam termos como “aproximado” ou “ilustrativo”, além de itens editoriais sem campo de URL no modelo de dados. Esses sinais orientam a pergunta, mas não são resultados de uma verificação sistemática. A distribuição real das falhas será medida pelo protocolo abaixo.
+
+O estudo é delimitado à auditoria documental de uma versão congelada do código e do conteúdo local. Embora a autora tenha indicado interesse em confiabilidade factual, conteúdo noticioso e efeito educativo, o prazo informado é inferior a um mês e não há orientação acadêmica definida. Para manter a pergunta executável e não confundir interpretação do sistema com efeito sobre pessoas, este protocolo examina rastreabilidade e adequação documental. Aprendizagem e compreensão por usuários ficam como estudo futuro.
+
+\subsection{Problema e questão de pesquisa}
+
+O problema é a ausência de um procedimento reprodutível para determinar, afirmação por afirmação, se o conteúdo ambiental do site pode ser rastreado até evidências apropriadas.
+
+\begin{quote}
+\textbf{QP1:} Que proporção e que tipos de afirmações ambientais e itens apresentados como notícias na versão analisada do Planeta Consciente têm fontes identificáveis e evidência suficiente para verificação independente?
+\end{quote}
+
+\textbf{QP2:} Quais metadados ou relações entre fonte e enunciado estão ausentes ou ambíguos e, portanto, dificultam a verificação?
+
+\subsection{Objetivo e contribuição}
+
+O objetivo é aplicar e documentar uma rubrica de auditoria de proveniência para o conteúdo ambiental do site. As contribuições previstas são (i) um inventário versionado de afirmações, (ii) um manual de codificação com critérios explícitos e (iii) recomendações de correção editorial e técnica. São produtos esperados do protocolo, ainda não resultados obtidos.
+
+\section{Fundamentação e normas de relato}
+
+O trabalho segue a lógica de estudo de caso em engenharia de software: delimita um sistema real, explicita contexto e unidades de análise, registra protocolo e discute limitações. Os padrões empíricos da ACM SIGSOFT recomendam selecionar o padrão correspondente ao método efetivamente empregado e relatar evidências, decisões e limitações; por isso, a checklist final será escolhida após a classificação institucional do estudo como auditoria documental/avaliação de artefato, e não como experimento com usuários \cite{sigsoft}.
+
+Para um artigo submetido a periódico, a ABNT NBR 6022:2018 fornece princípios de apresentação do artigo, complementados pelas normas de citações e referências e pelas instruções específicas do veículo. A versão de referências consultada precisa ser atual: a NBR 6023:2025 substitui a edição de 2018 com emenda; a NBR 10520:2023 trata de citações; a NBR 6028:2021 trata de resumos; e a NBR 6024:2012 trata da numeração de seções \cite{abnt6022,abnt6023,abnt10520,abnt6028,abnt6024}. A NBR 14724:2024 é pertinente quando o produto também for trabalho acadêmico institucional como TCC; não se deve presumir que seu leiaute prevaleça sobre o template de uma revista ou evento \cite{ufes14724}.
+
+A suíte abnTeX2 fornece uma classe LaTeX útil para documentos brasileiros, mas sua documentação pública alerta que o suporte bibliográfico não acompanha automaticamente as edições recentes da NBR 6023. Este projeto não declara conformidade integral só por compilar com uma classe ABNT: as referências são mantidas em formato numérico e precisam de conferência final, item por item, contra a NBR 6023:2025 licenciada e contra o veículo-alvo \cite{abntex2}. A compilação comprova apenas que o fonte produz um PDF.
+
+\section{Método}
+
+\subsection{Desenho e caso}
+
+Será conduzido um estudo de caso documental, descritivo, sobre o Planeta Consciente. O caso é a versão do repositório associada à release que contém este manuscrito. Antes da codificação serão registrados o identificador da release, o hash do commit, a data, os caminhos analisados e a versão do protocolo. Não serão analisadas sessões individuais de navegação, logs, cookies, endereços IP ou outros dados de visitantes.
+
+\subsection{Corpus e unidade de análise}
+
+O corpus inicial abrange os arquivos de conteúdo e apresentação relacionados aos enunciados ambientais: `lib/site-data.ts`, `lib/brazil-data.ts`, `components/awareness.tsx`, `components/brazil-map.tsx`, `components/news-section.tsx` e os componentes que exibem valores e notas. Um item será incluído quando contiver uma proposição verificável sobre ambiente, um valor, uma relação geográfica, temporal ou causal, ou uma peça apresentada como notícia. Um item composto será dividido em afirmações atômicas quando cada parte puder exigir evidência própria. Texto puramente instrucional ou opinativo sem enunciado verificável será registrado como excluído, com justificativa.
+
+\subsection{Procedimento de coleta}
+
+\begin{enumerate}[label=\arabic*.]
+  \item Congelar a versão em tag e registrar hash, data e arquivos-fonte.
+  \item Extrair os itens incluídos para um inventário CSV versionado, atribuindo um identificador estável a cada item.
+  \item Registrar, sem corrigir durante a coleta, o texto exibido, o tipo, a localização e qualquer fonte ou nota existente.
+  \item Pesquisar cada enunciado em fonte primária ou institucional adequada ao domínio. Para biomas, priorizar cartografia e publicações do IBGE; para desmatamento, dados e metodologia do INPE/TerraBrasilis; outras categorias exigem órgão e série adequados ao indicador \cite{ibgebiomas,inpeprodes}.
+  \item Registrar URL direta, autoria institucional, título, data/ano, data de acesso, unidade, recorte espacial/temporal, licença quando identificável e trecho/dado que sustenta ou contradiz o enunciado.
+  \item Encerrar a busca por item após consulta às fontes priorizadas e registro do que não foi localizado. Não tratar ausência de uma fonte localizada como prova de falsidade.
+\end{enumerate}
+
+\subsection{Rubrica de codificação}
+
+Cada unidade recebe os campos da Tabela~\ref{tab:rubrica}. A classificação “evidência suficiente” significa que uma fonte rastreável sustenta o sentido, período, unidade e escopo declarados; não equivale a certificação definitiva do fato. Casos ambíguos ou conflitantes serão marcados como inconclusivos e acompanhados de justificativa.
+
+\begin{table}[ht]
+\centering
+\caption{Campos mínimos do inventário e categorias de avaliação}
+\label{tab:rubrica}
+\begin{tabularx}{\textwidth}{p{3.2cm}X}
+\toprule
+Campo & Registro/categorias \\
+\midrule
+Identificação & ID, caminho do arquivo, componente e texto apresentado \\
+Tipo & Numérico; geográfico; temporal; causal; notícia; recomendação \\
+Fonte & URL, entidade/autoria, título, data e data de acesso; “não indicada” quando ausente \\
+Contexto & Unidade, denominador, período e recorte espacial, conforme aplicável \\
+Correspondência & Suficiente; parcial; conflitante; inconclusiva; fonte inacessível \\
+Rastreabilidade & Rastreável; parcialmente rastreável; não rastreável \\
+Decisão & Manter; corrigir; qualificar; substituir fonte; remover; investigar \\
+\bottomrule
+\end{tabularx}
+\fonte{Elaboração própria. Critérios operacionais a congelar antes da codificação.}
+\end{table}
+
+Para itens de notícia, a rubrica exige adicionalmente veículo/publicador e ligação para a peça de origem. Se a peça for apenas um texto editorial do próprio site, ela será classificada como conteúdo autoral/editorial, não como notícia de terceiro. A categoria visual exibida e a evidência de origem serão registradas separadamente.
+
+\subsection{Análise}
+
+Serão calculadas contagens e proporções por tipo de item e categoria de rastreabilidade, usando como denominador o total de unidades incluídas e reportando exclusões. Para cada classe, serão descritos exemplos positivos, parciais e inconclusivos, sem usar percentuais como medida de verdade geral do site. Alterações de regra durante a codificação serão registradas, versionadas e justificadas. Sempre que houver uma pessoa revisora disponível, uma amostra pré-definida será codificada independentemente e divergências serão resolvidas com registro da decisão; se não houver revisora no prazo, essa limitação será declarada e a autora manterá justificativa por item.
+
+\subsection{Reprodutibilidade}
+
+O pacote de pesquisa deverá conter protocolo, versão do corpus, inventário sem dados pessoais, manual de codificação, registro de busca, referências, script de resumo das contagens e PDF. Código, materiais e dados públicos serão versionados com o commit. Não serão depositados consentimentos, listas de participantes ou identificadores pessoais. Cada afirmação do artigo deverá estar ligada a uma entrada bibliográfica verificável; fontes devem ser consultadas diretamente sempre que possível, em linha com as diretrizes de integridade do CNPq \cite{cnpq}.
+
+\section{Ética, privacidade e integridade}
+
+Este protocolo, em sua versão atual, analisa apenas código e conteúdo publicamente acessíveis do repositório; não recruta pessoas nem trata dados pessoais de visitantes. Por esse recorte não se planeja coletar dados de participantes. A classificação ética institucional deve ser confirmada com a instituição antes de qualquer mudança de escopo.
+
+Uma etapa futura de avaliação de aprendizagem ou usabilidade envolvendo pessoas, direta ou indiretamente, exigirá novo protocolo, consulta prévia ao Comitê de Ética em Pesquisa competente e aprovação ética antes do recrutamento/coleta, à luz da Lei nº 14.874/2024 e de seu regulamento, Decreto nº 12.651/2025. A legislação inclui tratamento de dados e informações no escopo de pesquisa com seres humanos; não presumir dispensa por se tratar de informática ou questionário \cite{brasil14874,brasil12651}.
+
+O plano futuro deve definir controlador e operadores com a instituição, finalidade e hipótese legal apropriadas, minimização, aviso claro, controle de acesso, prazo de retenção, descarte, resposta a direitos e estratégia contra reidentificação. A LGPD prevê disciplina específica para fins acadêmicos e de pesquisa, mas não representa uma dispensa geral: a aplicação dos arts. 7º e 11, a qualificação como órgão de pesquisa e a base legal concreta devem ser analisadas para o caso. Seguir também o guia orientativo da ANPD; nunca publicar dados pessoais ou brutos de participantes em Releases, issues ou no repositório público \cite{brasil13709,anpd}.
+
+As fontes serão creditadas, referências verificadas, decisões e limitações relatadas e contribuições de autoria confirmadas pela própria equipe. A diretriz de integridade do CNPq consultada foi atualizada em 2026 e inclui transparência sobre o uso de inteligência artificial generativa para pesquisas sob seu âmbito; as regras específicas de financiamento, instituição e veículo serão verificadas antes da submissão \cite{cnpq}.
+
+\section{Plano de trabalho e critérios de conclusão}
+
+Com prazo inferior a um mês, propõe-se um recorte executável em quatro semanas: (1) congelar corpus e fechar rubrica; (2) inventariar e rastrear afirmações prioritárias; (3) codificar, revisar casos inconclusivos e calcular descritivos; (4) revisar texto, referências, formato e pacote reprodutível. Se o volume de afirmações exceder o prazo, o recorte deverá ser reduzido por tema antes da análise, e não depois de observar resultados.
+
+O protocolo estará pronto para ser convertido em artigo de resultados quando: todas as unidades do recorte tiverem decisão e justificativa; a matriz de fontes tiver URLs e datas; os totais puderem ser reproduzidos; cada resultado responder a uma questão; limitações e mudanças de protocolo estiverem registradas; e a conferência bibliográfica, normativa e de autoria estiver concluída. A versão atual não satisfaz por si só esses critérios de artigo com resultados.
+
+\section{Limitações previstas}
+
+Um único site limita generalização. A codificação por uma única autora, se não houver revisão independente, introduz risco de julgamento. A disponibilidade de uma página oficial não garante que seus dados sustentem a interpretação específica. Indicadores ambientais podem mudar, variar por escala ou divergir entre instituições. A auditoria documental não mede compreensão, aprendizagem, confiança do usuário nem comportamento ambiental. Uma futura avaliação com pessoas exigirá novo desenho e salvaguardas éticas e de dados.
+
+\section{Conclusão}
+
+Foi especificado um protocolo documental de baixo risco para examinar rastreabilidade, contexto e correspondência de evidências em um site de educação ambiental. Seu valor esperado é tornar observável o vínculo entre afirmações digitais e fontes, de forma que correções editoriais posteriores possam ser justificadas e reproduzidas. O texto ainda não reporta achados empíricos nem conformidade editorial final. Próximas etapas são concluir a codificação, validar cada fonte, adaptar o manuscrito a um veículo escolhido e completar a revisão normativa e acadêmica.
+
+\section*{Disponibilidade de materiais}
+
+Repositório: \url{https://github.com/ana-santiago-2008/planeta-consciente}. O protocolo, as fontes públicas e os scripts serão versionados junto ao código. Nenhum dado de participante é coletado neste protocolo.
+
+\section*{Agradecimentos}
+
+Não informado nesta versão. Incluir apenas contribuições reconhecidas com autorização e sem atribuir autoria indevida.
+
+\begin{thebibliography}{99}
+
+\bibitem{sigsoft}
+ACM SIGSOFT. \textit{Empirical standards for software engineering}. [S. l.], [s. d.]. Disponível em: \url{https://www2.sigsoft.org/EmpiricalStandards/}. Acesso em: 2 out. 2026.
+
+\bibitem{abnt6022}
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6022: informação e documentação: artigo em publicação periódica técnica e/ou científica: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2018. Catálogo oficial: \url{https://www.abntcatalogo.com.br/}. Acesso em: 2 out. 2026.
+
+\bibitem{abnt6023}
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6023: informação e documentação: referências: elaboração}. 3. ed. Rio de Janeiro: ABNT, 2025. A versão de 2025 substitui a de 2018 com Emenda 1. Ver guia de atualização da Universidade Federal do Espírito Santo: \url{https://engenhariaedesenvolvimentosustentavel.ufes.br/sites/engenhariaedesenvolvimentosustentavel.ufes.br/files/field/anexo/abnt_nbr_6023_-_referencias.pdf}. Acesso em: 2 out. 2026.
+
+\bibitem{abnt10520}
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 10520: informação e documentação: citações em documentos: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2023. Ver orientação da Biblioteca da Unicamp: \url{https://www.iel.unicamp.br/wp-content/uploads/2024/09/guia_nbr10520_2023_ult.-versao.pdf}. Acesso em: 2 out. 2026.
+
+\bibitem{abnt6024}
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6024: informação e documentação: numeração progressiva das seções de um documento: apresentação}. Rio de Janeiro: ABNT, 2012. Catálogo oficial: \url{https://www.abntcatalogo.com.br/}. Acesso em: 2 out. 2026.
+
+\bibitem{abnt6028}
+ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6028: informação e documentação: resumo, resenha e recensão: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2021. Ver orientação da Biblioteca Central da PUCRS: \url{https://biblioteca.pucrs.br/noticias/atualizacao-da-norma-de-resumo-abnt-nbr-6028-21-maio-2021/}. Acesso em: 2 out. 2026.
+
+\bibitem{ufes14724}
+UNIVERSIDADE FEDERAL DO ESPÍRITO SANTO. \textit{ABNT NBR 14724: trabalhos acadêmicos: apresentação}. 4. ed. Vitória: UFES, 2024. Disponível em: \url{https://engenhariaedesenvolvimentosustentavel.ufes.br/sites/engenhariaedesenvolvimentosustentavel.ufes.br/files/field/anexo/abnt_nbr_14724.pdf}. Acesso em: 2 out. 2026.
+
+\bibitem{abntex2}
+ABNTEX. \textit{abnTeX2: classe LaTeX e estilos bibliográficos compatíveis com normas da ABNT}. [S. l.], [s. d.]. Disponível em: \url{https://github.com/abntex/abntex2}. Acesso em: 2 out. 2026.
+
+\bibitem{brasil13709}
+BRASIL. \textit{Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais}. Brasília, DF: Presidência da República, 2018. Texto compilado. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm}. Acesso em: 2 out. 2026.
+
+\bibitem{brasil14874}
+BRASIL. \textit{Lei nº 14.874, de 28 de maio de 2024: dispõe sobre a pesquisa com seres humanos e institui o Sistema Nacional de Ética em Pesquisa com Seres Humanos}. Brasília, DF: Presidência da República, 2024. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14874.htm}. Acesso em: 2 out. 2026.
+
+\bibitem{brasil12651}
+BRASIL. \textit{Decreto nº 12.651, de 7 de outubro de 2025: regulamenta a Lei nº 14.874, de 28 de maio de 2024}. Brasília, DF: Presidência da República, 2025. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12651.htm}. Acesso em: 2 out. 2026.
+
+\bibitem{anpd}
+BRASIL. Autoridade Nacional de Proteção de Dados. \textit{Guia orientativo: tratamento de dados pessoais para fins acadêmicos e para a realização de estudos e pesquisas}. Brasília, DF: ANPD, 2024. Disponível em: \url{https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-tratamento-de-dados-pessoais-para-fins-academicos-e-para-a-realizacao-de-estudos-e-pesquisas}. Acesso em: 2 out. 2026.
+
+\bibitem{cnpq}
+BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Brasília, DF: CNPq, atualizado em 2026. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 2 out. 2026.
+
+\bibitem{ibgebiomas}
+INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. \textit{Biomas e sistema costeiro-marinho do Brasil}. Rio de Janeiro: IBGE, [s. d.]. Disponível em: \url{https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html?lang=pt-BR}. Acesso em: 2 out. 2026.
+
+\bibitem{inpeprodes}
+BRASIL. Instituto Nacional de Pesquisas Espaciais. \textit{TerraBrasilis: dados e informações sobre monitoramento ambiental}. São José dos Campos: INPE, [s. d.]. Disponível em: \url{https://terrabrasilis.dpi.inpe.br/}. Acesso em: 2 out. 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,81 @@
+name: Build and release application and article
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-release:
+    runs-on: ubuntu-22.04
+    env:
+      NEXT_PUBLIC_BASE_PATH: /planeta-consciente
+    steps:
+      - name: Check out tagged source
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install application dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build static application
+        run: pnpm build
+      - name: Validate article structure and references
+        run: python3 scripts/check-article.py
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y latexmk texlive-latex-extra texlive-publishers texlive-lang-portuguese texlive-fonts-recommended
+      - name: Compile article PDF
+        run: |
+          mkdir -p release-assets
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/main.tex
+      - name: Package static site and article sources
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import shutil
+          import zipfile
+
+          app_version = json.loads(Path("package.json").read_text())["version"]
+          paper_version = Path("article/VERSION").read_text().strip()
+          assets = Path("release-assets")
+          with zipfile.ZipFile(assets / f"planeta-consciente-web-{app_version}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path("out").rglob("*")):
+                  if path.is_file():
+                      archive.write(path, path.relative_to("out"))
+          shutil.copy2(assets / "main.pdf", assets / f"artigo-planeta-consciente-{paper_version}.pdf")
+          with zipfile.ZipFile(assets / f"fontes-artigo-{paper_version}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(Path("article").rglob("*")):
+                  if path.is_file():
+                      archive.write(path, path)
+          print(f"App {app_version}; artigo {paper_version}")
+          PY
+      - name: Publish GitHub Release with compiled artifacts
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, '-protocolo.') }}
+          make_latest: false
+          files: |
+            release-assets/planeta-consciente-web-*.zip
+            release-assets/artigo-planeta-consciente-*.pdf
+            release-assets/fontes-artigo-*.zip

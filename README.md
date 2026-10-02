@@ -30,6 +30,12 @@ pnpm start
 
 O workflow em `.github/workflows/deploy.yml` gera uma exportação estática e publica automaticamente cada atualização da branch `main` em [https://ana-santiago-2008.github.io/planeta-consciente/](https://ana-santiago-2008.github.io/planeta-consciente/). Para a primeira publicação, em **Settings → Pages**, selecione **GitHub Actions** como origem de publicação. O diretório `out/` é gerado no build e enviado pelo workflow; ele não precisa ser commitado.
 
+## Artigo científico e releases
+
+O manuscrito LaTeX e o fluxo de escrita estão em [`article/`](article/) e [`docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md`](docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md). Cada tag `v*` aciona `.github/workflows/release.yml`, que compila o site e o artigo e anexa ZIPs do site estático, do PDF e das fontes à GitHub Release. As versões do aplicativo e do manuscrito são mantidas separadamente. A versão inicial do manuscrito é um protocolo preliminar, sem resultados empíricos inventados; uma release `-protocolo.*` é pré-lançamento.
+
+Para gerar uma release versionada, atualize `package.json` e `article/VERSION`, revise o PDF e o build, crie uma tag (por exemplo `v0.2.0-protocolo.1`) no commit revisado e envie a tag ao GitHub. O workflow cria uma pré-release para tags com `-protocolo.`. Releases sem esse sufixo devem ser usadas somente depois da revisão humana final e da validação dos resultados.
+
 ## Estrutura
 
 - `app/`: entrada da página, layout e estilos globais.
