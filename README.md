@@ -32,7 +32,7 @@ O workflow em `.github/workflows/deploy.yml` gera uma exportação estática e p
 
 ## Artigo científico e releases
 
-O manuscrito LaTeX e o fluxo de escrita estão em [`article/`](article/) e [`docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md`](docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md). Cada tag `v*` aciona `.github/workflows/release.yml`, que compila o site e o artigo e anexa ZIPs do site estático, do PDF e das fontes à GitHub Release. As versões do aplicativo e do manuscrito são mantidas separadamente. A versão inicial do manuscrito é um protocolo preliminar, sem resultados empíricos inventados; uma release `-protocolo.*` é pré-lançamento.
+O manuscrito LaTeX, o plano exploratório de avaliação com usuários e o fluxo de escrita estão em [`article/`](article/), [`docs/pesquisa/PLANO-ESTUDO-USUARIOS.md`](docs/pesquisa/PLANO-ESTUDO-USUARIOS.md) e [`docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md`](docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md). Cada tag `v*` aciona `.github/workflows/release.yml`, que compila o site e o artigo e anexa ZIPs do site estático, do PDF e das fontes à GitHub Release. As versões do aplicativo e do manuscrito são mantidas separadamente. O manuscrito é um protocolo preliminar, sem resultados empíricos; não inicie recrutamento ou coleta antes de resolver a avaliação ética institucional e os requisitos de proteção de dados. Releases `-protocolo.*` são pré-lançamentos.
 
 Para gerar uma release versionada, atualize `package.json` e `article/VERSION`, revise o PDF e o build, crie uma tag (por exemplo `v0.2.0-protocolo.1`) no commit revisado e envie a tag ao GitHub. O workflow cria uma pré-release para tags com `-protocolo.`. Releases sem esse sufixo devem ser usadas somente depois da revisão humana final e da validação dos resultados.
 
