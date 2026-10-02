@@ -14,6 +14,7 @@ required = {
     "abstract": r"\\begin\{resumo\}.*?\\end\{resumo\}",
     "keywords": r"\\textbf\{Palavras-chave\}",
     "research method": r"\\section\{Método\}",
+    "originality protocol": r"\\subsection\{Protocolo de originalidade, atribuição e prevenção de plágio\}",
     "ethics and privacy": r"\\section\{Ética, privacidade e integridade\}",
     "limitations": r"\\section\{Limitações previstas\}",
     "references": r"\\begin\{thebibliography\}.*?\\end\{thebibliography\}",

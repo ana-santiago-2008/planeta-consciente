@@ -30,7 +30,7 @@
 \autor{Ana Santiago}
 \local{Brasil}
 \data{2026}
-\newcommand{\paperversion}{0.2.0-protocolo.1}
+\newcommand{\paperversion}{0.2.0-protocolo.2}
 
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{0.15cm}
@@ -88,6 +88,26 @@ Para um artigo submetido a periódico, a ABNT NBR 6022:2018 fornece princípios 
 A suíte abnTeX2 fornece uma classe LaTeX útil para documentos brasileiros, mas sua documentação pública alerta que o suporte bibliográfico não acompanha automaticamente as edições recentes da NBR 6023. Este projeto não declara conformidade integral só por compilar com uma classe ABNT: as referências são mantidas em formato numérico e precisam de conferência final, item por item, contra a NBR 6023:2025 licenciada e contra o veículo-alvo \cite{abntex2}. A compilação comprova apenas que o fonte produz um PDF.
 
 \section{Método}
+
+\subsection{Protocolo de originalidade, atribuição e prevenção de plágio}
+
+A prevenção de plágio será tratada como procedimento transversal de pesquisa e redação, não como uma porcentagem obtida por software. As diretrizes do CNPq requerem crédito adequado às fontes, aspas e referências para citação literal, fidelidade de sentido em paráfrases, consulta à fonte original quando possível, identificação de trabalhos anteriores dos próprios autores e correspondência entre citações e referências \cite{cnpq}. As normas ABNT NBR 10520:2023 e NBR 6023:2025 orientam, respectivamente, citações e referências quando requeridas pelo curso ou veículo; elas não substituem julgamento de integridade nem a política editorial específica \cite{abnt10520,abnt6023}.
+
+Antes da redação de cada seção, será mantida uma matriz de leitura com referência completa, DOI/URL, páginas ou seções consultadas, tipo de fonte, ideia extraída e destino previsto no manuscrito. Notas literais serão marcadas como transcrição, com página/localização e aspas desde o momento da anotação; paráfrases serão identificadas como tais e receberão a citação junto à ideia. A redação deverá sintetizar evidências de mais de uma fonte quando pertinente, explicitar a contribuição interpretativa da autora e evitar paráfrase por mera substituição de palavras. Citações secundárias só serão usadas quando a obra original estiver indisponível, identificando essa condição segundo a norma e o estilo do veículo. Toda citação será conferida contra a fonte e toda referência listada deverá corresponder a uma citação efetiva.
+
+Antes da submissão, a autora revisará também relatórios, projetos, apresentações, repositórios e textos próprios anteriores para declarar sobreposições, citar versões anteriores e verificar regras de direitos autorais e do veículo. Resultados e dados não serão divididos artificialmente em publicações redundantes; reutilização textual própria será transparente, justificada e limitada conforme orientação editorial \cite{copeTextRecycle}. Figuras, tabelas, imagens, código, dados e traduções terão proveniência, licença/permissão e atribuição registradas.
+
+\begin{enumerate}[label=\arabic*.]
+  \item Selecionar fontes prioritariamente primárias e confiáveis; registrar identificador persistente, URL, data, edição e localização exata da evidência.
+  \item Redigir a partir da matriz de leitura, mantendo separadas transcrição literal, paráfrase, síntese própria e texto de ferramenta de IA; inserir a citação durante a escrita, não apenas na revisão final.
+  \item Conferir palavra por palavra toda citação direta, sinalizar cortes e acréscimos, e revisar se cada paráfrase preserva o sentido original sem reproduzir sua estrutura distintiva.
+  \item Fazer conferência bidirecional: cada citação no texto encontra sua referência e cada entrada bibliográfica é citada; revisar autoria, ano, título, DOI/URL e localização.
+  \item Revisar sobreposição com trabalhos anteriores da própria autora, preprints e materiais públicos, declarando versões relacionadas e evitando submissão simultânea ou publicação duplicada.
+  \item Se houver ferramenta institucional de similaridade, analisar cada trecho e sua fonte; corrigir ausência de crédito ou transcrição sem marcação e documentar falsos positivos. Não aplicar um limiar percentual como decisão automática: ferramentas reportam similaridade, não decidem se houve plágio \cite{crossrefSimilarity,copyspider}.
+  \item Concluir com leitura humana de autoria, argumentos, fontes, métodos e afirmações; declarar uso de IA conforme política do curso, veículo e CNPq. A responsabilidade integral pelo conteúdo final permanece com a autora \cite{cnpq}.
+\end{enumerate}
+
+O Zotero poderá apoiar captura e organização de referências, citações e bibliografia; o estilo automático deverá ser conferido contra a norma atual e o template editorial, pois gerenciadores não validam a exatidão nem a adequação de cada referência \cite{zotero}. CopySpider ou ferramentas institucionais como iThenticate/Turnitin podem servir como revisão auxiliar se autorizadas pela instituição. Antes de enviar um manuscrito inédito a qualquer serviço, devem ser conferidos termos, retenção, indexação e privacidade dos arquivos. Um resultado baixo não prova ausência de plágio, e um resultado alto pode decorrer de referências, citações corretas, frases técnicas ou versões próprias; examinar o relatório e as fontes é indispensável \cite{crossrefSimilarity}.
 
 \subsection{Desenho e unidade de análise}
 
@@ -193,6 +213,18 @@ BRASIL. Autoridade Nacional de Proteção de Dados. \textit{Guia orientativo: tr
 
 \bibitem{cnpq}
 BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Brasília, DF: CNPq, atualizado em 2026. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 2 out. 2026.
+
+\bibitem{copeTextRecycle}
+COMMITTEE ON PUBLICATION ETHICS. \textit{Text recycling guidelines}. [S. l.]: COPE, 2016. Disponível em: \url{https://publicationethics.org/files/Web_A29298_COPE_Text_Recycling.pdf}. Acesso em: 2 out. 2026.
+
+\bibitem{crossrefSimilarity}
+CROSSREF. \textit{Understanding your Similarity Report}. [S. l.]: Crossref, [s. d.]. Disponível em: \url{https://www.crossref.org/documentation/similarity-check/similarity-report-understand/}. Acesso em: 2 out. 2026.
+
+\bibitem{copyspider}
+COPYSPIDER. \textit{Funcionamento}. [S. l.], [s. d.]. Disponível em: \url{https://copyspider.com.br/main/pt-br/how-it-works}. Acesso em: 2 out. 2026.
+
+\bibitem{zotero}
+ZOTERO. \textit{Word processor plugins}. [S. l.], [s. d.]. Disponível em: \url{https://www.zotero.org/support/word_processor_integration}. Acesso em: 2 out. 2026.
 
 \bibitem{ibgebiomas}
 INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. \textit{Biomas e sistema costeiro-marinho do Brasil}. Rio de Janeiro: IBGE, [s. d.]. Disponível em: \url{https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html?lang=pt-BR}. Acesso em: 2 out. 2026.
