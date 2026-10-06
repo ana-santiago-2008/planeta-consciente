@@ -1,41 +1,87 @@
 #!/usr/bin/env python3
-"""Validate page-span limits from labels in the compiled LaTeX auxiliary file."""
+"""Validate section page limits by locating chapter headings in the compiled PDF."""
 from pathlib import Path
 import re
+import subprocess
 import sys
+import unicodedata
 
-aux = Path(sys.argv[1] if len(sys.argv) > 1 else "release-assets/projeto-integrador.aux")
-if not aux.is_file():
-    raise SystemExit(f"Arquivo auxiliar ausente: {aux}")
-text = aux.read_text(encoding="utf-8", errors="replace")
-labels = {
-    match.group(1): int(match.group(2))
-    for match in re.finditer(r"\\newlabel\{([^}]+)\}\{\{[^}]*\}\{(\d+)\}", text)
-}
-limits = {
-    "Introdução": ("page:introducao:start", "page:introducao:end", 3),
-    "Objetivos": ("page:objetivos:start", "page:objetivos:end", 3),
-    "Metodologia": ("page:metodologia:start", "page:metodologia:end", 3),
-    "Referencial teórico": ("page:referencial:start", "page:referencial:end", 3),
-    "Considerações finais": ("page:consideracoes:start", "page:consideracoes:end", 3),
-    "Referências": ("page:referencias:start", "page:referencias:end", 2),
-}
+pdf = Path(sys.argv[1] if len(sys.argv) > 1 else "release-assets/main.pdf")
+if not pdf.is_file():
+    raise SystemExit(f"PDF ausente: {pdf}")
+try:
+    result = subprocess.run(
+        ["pdftotext", "-layout", str(pdf), "-"],
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+except FileNotFoundError:
+    raise SystemExit("pdftotext ausente; instale o pacote poppler-utils antes desta validação.")
+except subprocess.CalledProcessError as exc:
+    raise SystemExit(f"Não foi possível extrair texto do PDF: {exc.stderr}")
+
+pages = result.stdout.split("\f")
+while pages and not pages[-1].strip():
+    pages.pop()
+
+def canonical(line: str) -> str:
+    text = unicodedata.normalize("NFKD", line)
+    text = "".join(ch for ch in text if not unicodedata.combining(ch))
+    return re.sub(r"\s+", " ", text).strip().upper()
+
+chapters = [
+    ("Introdução", "INTRODUCAO", 3),
+    ("Objetivos", "OBJETIVOS", 3),
+    ("Metodologia", "METODOLOGIA", 3),
+    ("Referencial teórico", "REFERENCIAL TEORICO", 3),
+    ("Resultados e discussão", "RESULTADOS E DISCUSSAO", None),
+    ("Considerações finais", "CONSIDERACOES FINAIS", 3),
+    ("Referências", "REFERENCIAS", 2),
+]
+starts: dict[str, int] = {}
+for name, heading, _limit in chapters:
+    pattern = re.compile(rf"^(?:\d+(?:\.\d+)*\s+)?{re.escape(heading)}$", re.I)
+    hits = []
+    for page_number, page in enumerate(pages, start=1):
+        if any(pattern.fullmatch(canonical(line)) for line in page.splitlines()):
+            hits.append(page_number)
+    if hits:
+        # Prefer the last exact heading so an uppercase contents entry cannot
+        # be mistaken for the chapter in the body.
+        starts[name] = hits[-1]
+    else:
+        print(f"Cabeçalho não localizado no PDF: {name}")
+
 errors = []
-for section, (start_key, end_key, strict_limit) in limits.items():
-    missing = [key for key in (start_key, end_key) if key not in labels]
-    if missing:
-        errors.append(f"{section}: rótulo ausente no AUX: {', '.join(missing)}")
+ordered = [starts[name] for name, _, _ in chapters if name in starts]
+if ordered != sorted(ordered):
+    errors.append("Os capítulos não aparecem na ordem esperada no PDF.")
+for index, (name, _heading, limit) in enumerate(chapters):
+    if name not in starts:
+        errors.append(f"{name}: não foi possível medir; cabeçalho não localizado.")
         continue
-    first, last = labels[start_key], labels[end_key]
-    pages = last - first + 1
-    print(f"{section}: páginas {first}–{last} ({pages}; exigido < {strict_limit})")
-    if pages < 1:
-        errors.append(f"{section}: sequência de páginas inválida ({first}–{last}).")
-    elif pages >= strict_limit:
-        errors.append(f"{section}: ocupa {pages} páginas; o máximo permitido é {strict_limit - 1}.")
+    next_start = next((starts[n] for n, _, _ in chapters[index + 1 :] if n in starts), None)
+    if name == "Referências":
+        page_count = len(pages) - starts[name] + 1
+    elif next_start is None:
+        errors.append(f"{name}: não existe seção seguinte para delimitar as páginas.")
+        continue
+    else:
+        page_count = next_start - starts[name]
+    if limit is None:
+        print(f"{name}: páginas {starts[name]}–{starts[name] + page_count - 1} ({page_count}; sem limite definido)")
+        continue
+    print(f"{name}: páginas {starts[name]}–{starts[name] + page_count - 1} ({page_count}; exigido < {limit})")
+    if page_count < 1:
+        errors.append(f"{name}: sequência de páginas inválida.")
+    elif page_count >= limit:
+        errors.append(f"{name}: ocupa {page_count} páginas; máximo permitido {limit - 1}.")
+
 if errors:
     print("\nFALHA — limites de extensão não atendidos:")
     for error in errors:
         print(f"- {error}")
     raise SystemExit(1)
-print("\nSUCESSO — todas as seções atendem aos limites de páginas.")
+print("\nSUCESSO — todas as seções com limite definido atendem ao máximo de páginas.")

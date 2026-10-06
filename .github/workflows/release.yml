@@ -40,13 +40,13 @@ jobs:
       - name: Install LaTeX toolchain
         run: |
           sudo apt-get update
-          sudo apt-get install --no-install-recommends -y latexmk lmodern texlive-latex-extra texlive-publishers texlive-lang-portuguese texlive-fonts-recommended
+          sudo apt-get install --no-install-recommends -y latexmk lmodern texlive-latex-extra texlive-publishers texlive-lang-portuguese texlive-fonts-recommended poppler-utils
       - name: Compile article PDF
         run: |
           mkdir -p release-assets
           latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/main.tex
       - name: Validate article section page limits
-        run: python3 scripts/check-project-integrador-pages.py release-assets/main.aux
+        run: python3 scripts/check-project-integrador-pages.py release-assets/main.pdf
       - name: Package static site and article sources
         run: |
           python3 - <<'PY'

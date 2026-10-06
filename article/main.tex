@@ -19,7 +19,7 @@
 \setlength{\parskip}{0.15cm}
 \OnehalfSpacing
 \urlstyle{same}
-\newcommand{\projectversion}{0.3.0-projeto.1}
+\newcommand{\projectversion}{0.3.0-projeto.2}
 \newcommand{\tituloartigo}{Planeta Consciente: desenvolvimento de um site estático interativo para educação ambiental}
 \begin{document}
 \begin{capa}
@@ -61,15 +61,15 @@ Este artigo relata o desenvolvimento do Planeta Consciente, um site estático in
 \pdfbookmark[0]{\contentsname}{toc}
 \tableofcontents*
 \textual
-\chapter{Introdução}\label{page:introducao:start}
+\chapter{Introdução}
 A educação ambiental em meios digitais pode combinar explicações, dados e interação para apresentar temas como água, florestas, reciclagem, mudanças climáticas e biomas. O desafio de desenvolvimento é organizar esses recursos em uma interface navegável sem confundir visualização atraente com informação verificada. Este trabalho apresenta o Planeta Consciente como artefato de software construído no Projeto Integrador do Curso Técnico em Análise e Desenvolvimento de Sistemas.
 
 O problema de projeto foi estruturar, em um único site, conteúdos ambientais e componentes interativos que pudessem ser publicados em hospedagem estática. A questão orientadora é: como implementar e publicar uma aplicação web responsiva que organize conteúdos ambientais, gráficos e um mapa interativo, mantendo uma arquitetura simples e passível de evolução? O escopo deste artigo é o desenvolvimento do artefato e a verificação técnica de compilação e publicação; não se afirma que o site aumente conhecimento, mude comportamento ou tenha usabilidade validada por participantes.
 
 A escolha por exportação estática viabiliza servir HTML, CSS, JavaScript e arquivos públicos sem manter um servidor Next.js em execução, respeitadas as limitações desse modo de implantação \cite{nextstatic}. A aplicação foi publicada no GitHub Pages por fluxo de integração contínua, que constrói o site e envia os arquivos estáticos ao ambiente de publicação \cite{ghpages}.
-\label{page:introducao:end}
 
-\chapter{Objetivos}\label{page:objetivos:start}
+
+\chapter{Objetivos}
 \section{Objetivo geral}
 Desenvolver e publicar o Planeta Consciente como site estático interativo de educação ambiental, organizando conteúdos, gráficos e mapa em uma aplicação web modular e verificável.
 
@@ -78,17 +78,17 @@ Desenvolver e publicar o Planeta Consciente como site estático interativo de ed
 \item Implementar uma interface responsiva composta por seções temáticas, gráficos, ações sustentáveis, curiosidades, notícias e mapa de biomas, com dados estruturados e componentes reutilizáveis.
 \item Automatizar a geração e a publicação do site e dos artefatos acadêmicos, registrando as verificações técnicas executadas e as limitações que requerem validação futura.
 \end{enumerate}
-\label{page:objetivos:end}
 
-\chapter{Metodologia}\label{page:metodologia:start}
+
+\chapter{Metodologia}
 Este trabalho é um relato descritivo de desenvolvimento de software, delimitado ao repositório versionado do Planeta Consciente. A unidade de análise é a aplicação e seus componentes, seus dados locais e seus fluxos automatizados de construção e publicação. O procedimento foi organizado em quatro etapas: delimitação do escopo; decomposição da página em componentes; implementação e integração dos dados; e verificação por build de produção e implantação estática. A inspeção é baseada no código e nos workflows do repositório; não corresponde a experimento nem a avaliação com usuários.
 
 A página principal compõe cabeçalho, apresentação, conscientização, temas, atitudes sustentáveis, curiosidades, mapa, notícias e rodapé. A camada de conteúdo em TypeScript separa dados dos componentes de apresentação. Next.js com App Router e React fornece a composição da interface; Recharts é usado para gráficos, enquanto o mapa consome geometrias SVG locais e uma tabela de associação entre siglas estaduais e biomas. A aplicação também utiliza Tailwind CSS para estilos e Lucide para ícones. A descrição das bibliotecas segue sua documentação primária \cite{reactstate,recharts}.
 
 Na verificação técnica, o fluxo de integração instala dependências com arquivo de lock, executa o build estático, valida a estrutura do manuscrito e compila PDFs com LaTeX. O fluxo de publicação transfere a pasta exportada para GitHub Pages. A Release versionada empacota o site e os documentos compilados. Esses procedimentos verificam geração e entrega do artefato; não verificam correção científica de cada dado ambiental, compatibilidade com tecnologias assistivas ou experiência de pessoas usuárias.
-\label{page:metodologia:end}
 
-\chapter{Referencial teórico}\label{page:referencial:start}
+
+\chapter{Referencial teórico}
 \section{Engenharia de aplicações web estáticas}
 A decomposição de interface em componentes permite manter partes com responsabilidades distintas e integrar conteúdo, estado e apresentação. React descreve estado como mecanismo para refletir entradas e mudanças de interface, o que fundamenta controles locais como seleção de tema, estado no mapa e marcação de atitudes \cite{reactstate}. No projeto, o conteúdo temático e os biomas são mantidos em módulos de dados TypeScript, e a página coordena componentes especializados.
 
@@ -101,7 +101,7 @@ No mapa, a associação de um único bioma predominante a cada estado simplifica
 
 \section{Integridade e apresentação acadêmica}
 A redação deste artigo separa funcionalidades efetivamente implementadas de avaliações ainda não realizadas. Fontes técnicas são citadas junto às afirmações que sustentam, e as referências incluem URLs rastreáveis. A versão final deverá seguir o manual institucional e as normas ABNT aplicáveis à apresentação, às citações e às referências; o uso de uma classe LaTeX não comprova conformidade automática. As diretrizes do CNPq reforçam a responsabilidade de atribuição e integridade das fontes \cite{cnpq}.
-\label{page:referencial:end}
+
 
 \chapter{Resultados e discussão}
 O artefato implementado reúne uma página única com navegação por âncoras e sete áreas de conteúdo. A seção de temas seleciona tópicos e apresenta séries em gráficos de barras, linhas ou setores; a área de atitudes atualiza progresso enquanto a página está aberta; curiosidades usam controles expansíveis; e o mapa permite selecionar estado e filtrar biomas. As notícias são blocos editoriais estáticos, sem integração com serviço externo de notícias. Essas funções foram confirmadas na composição da página e nos componentes e dados do código-fonte.
@@ -111,17 +111,17 @@ A exportação estática foi construída e publicada automaticamente no endereç
 A inspeção do artefato identificou quatro limites relevantes. Primeiro, alguns dados e notas de gráficos mencionam fontes em termos gerais, sem ligação individual e metadados completos por afirmação. Segundo, o mapa usa uma categoria predominante por estado, portanto comunica uma simplificação espacial. Terceiro, as atitudes sustentáveis são armazenadas apenas no estado da interface e não persistem após recarregamento. Quarto, o layout inclui a ferramenta Vercel Analytics em produção; antes de uso educacional ampliado, é necessário documentar sua configuração, os dados tratados e as informações de privacidade conforme a LGPD \cite{lgpd}. Nenhum desses pontos foi resolvido por testes com usuários.
 
 Também permanece uma divergência cadastral a conferir: os dados fornecidos para a capa informam BR-316, km 24 e CEP 64022-990, enquanto publicação do Diário Oficial do Piauí associa o código INEP 22161201 ao CETI Lucas Meireles, zona rural de Teresina, com endereço em km 22 e CEP 64390-000 \cite{doepi2025}. O nome institucional foi associado ao código; endereço e CEP devem ser confirmados com a escola antes da entrega definitiva.
-\label{page:resultados:end}
 
-\chapter{Considerações finais}\label{page:consideracoes:start}
+
+\chapter{Considerações finais}
 O Projeto Integrador resultou no desenvolvimento e na publicação do Planeta Consciente, uma aplicação estática que reúne conteúdos temáticos, gráficos, curiosidades, ações sustentáveis, notícias e um mapa interativo. A arquitetura baseada em Next.js, React, módulos de dados e componentes especializados permitiu gerar os arquivos estáticos e automatizar sua publicação no GitHub Pages. Os objetivos de implementação e entrega técnica foram atendidos conforme as verificações de build e implantação executadas.
 
 O resultado não autoriza concluir que o site melhora aprendizagem ou comportamento ambiental: não houve estudo com participantes, teste de usabilidade, avaliação formal de acessibilidade ou medição de desempenho educacional. Para evoluir o projeto, recomenda-se vincular cada dado ambiental a fonte verificável, rever simplificações do mapa, avaliar acessibilidade com critérios próprios, definir transparência e governança de Analytics e realizar testes de experiência com autorização e salvaguardas adequadas. O endereço escolar divergente também deve ser confirmado antes do protocolo final. Assim, o produto é uma entrega técnica funcional com agenda explícita de validação factual e de experiência de uso.
-\label{page:consideracoes:end}
+
 
 \postextual
 \begin{thebibliography}{99}
-\label{page:referencias:start}
+
 \bibitem{nextstatic} VERCEL. \textit{Static exports}. Next.js Documentation. Disponível em: \url{https://nextjs.org/docs/app/guides/static-exports}. Acesso em: 6 out. 2026.
 \bibitem{reactstate} META OPEN SOURCE. \textit{Managing state}. React Documentation. Disponível em: \url{https://react.dev/learn/managing-state}. Acesso em: 6 out. 2026.
 \bibitem{recharts} RECHARTS GROUP. \textit{Recharts: composable charting library built on React components}. Disponível em: \url{https://recharts.org/}. Acesso em: 6 out. 2026.
@@ -131,5 +131,5 @@ O resultado não autoriza concluir que o site melhora aprendizagem ou comportame
 \bibitem{cnpq} BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 6 out. 2026.
 \bibitem{lgpd} BRASIL. \textit{Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais}. Texto compilado. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm}. Acesso em: 6 out. 2026.
 \end{thebibliography}
-\label{page:referencias:end}
+
 \end{document}

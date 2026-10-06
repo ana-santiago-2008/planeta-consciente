@@ -12,13 +12,12 @@ required = {
     "version": rf"\\newcommand\{{\\projectversion\}}{{{re.escape(version)}}}",
     "abstract": r"\\begin\{resumo\}.*?\\end\{resumo\}",
     "keywords": r"\\textbf\{Palavras-chave\}",
-    "introduction": r"\\chapter\{Introdução\}.*?\\label\{page:introducao:start\}",
+    "introduction": r"\\chapter\{Introdução\}",
     "objectives": r"\\chapter\{Objetivos\}.*?\\section\{Objetivo geral\}.*?\\section\{Objetivos específicos\}",
     "methodology": r"\\chapter\{Metodologia\}",
     "theoretical framework": r"\\chapter\{Referencial teórico\}",
     "results and discussion": r"\\chapter\{Resultados e discussão\}",
     "final considerations": r"\\chapter\{Considerações finais\}",
-    "page limit labels": r"\\label\{page:referencias:start\}.*?\\label\{page:referencias:end\}",
     "references": r"\\begin\{thebibliography\}.*?\\end\{thebibliography\}",
 }
 for label, pattern in required.items():
@@ -51,4 +50,4 @@ if errors:
         print(f"- {error}")
     sys.exit(1)
 print(f"Artigo do Projeto Integrador {version}: estrutura, 2 objetivos, citações/referências e URLs verificados.")
-print("A etapa de limites de páginas é conferida depois da compilação, a partir dos rótulos do PDF.")
+print("Os limites de páginas são conferidos após a compilação, a partir das páginas renderizadas do PDF.")
