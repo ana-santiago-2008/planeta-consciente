@@ -8,6 +8,7 @@ Este fluxo trata `article/main.tex` como **protocolo exploratório de compreens�
 |---|---|---|
 | **Obrigatório antes da submissão** | Escolher periódico/evento e seguir primeiro suas instruções, template, escopo, limite de palavras/páginas, anonimização, direitos e política de dados. | Checklist do veículo datada e anexada ao registro da versão. |
 | **Obrigatório** | Não inventar dados, resultados, citações, autoria, aprovação ética ou conformidade. Diferenciar protocolo, resultado, hipótese e resultado esperado. | Revisão autora; seção e resumo coerentes com estágio real. |
+| **Regra de composição** | Planejar e revisar os parágrafos pelo esquema ABCD (Abertura, Base, Conteúdo analítico, Desfecho), buscando argumentação autoral, evidência rastreável e transição lógica. Aplicar como padrão flexível, não como molde mecânico. | Rascunho ou revisão identifica a função de cada parágrafo e eventuais exceções. |
 | **Obrigatório em cada seção** | Registrar cada ideia externa na matriz de leitura; distinguir transcrição, paráfrase e síntese; citar na redação; conferir citações/referências e originalidade intelectual. | Protocolo de originalidade preenchido e lista de pendências zerada antes da submissão. |
 | **Obrigatório para texto próprio reutilizado** | Conferir versões anteriores, trabalhos de curso, resumos, preprints e apresentações; citar/divulgar sobreposição e seguir política do venue; não submeter simultaneamente nem fragmentar resultados. | Registro de divulgação prévia/autorreuso revisado antes da submissão. |
 | **Obrigatório** | Estruturar artigo com base na ABNT NBR 6022:2018 quando a instituição/venue exigir ABNT; citar pela NBR 10520:2023; referências pela NBR 6023:2025; resumos pela NBR 6028:2021; numeração pela NBR 6024:2012. Conferir edição no catálogo e regras do venue na data de cada release. | Checklist manual baseada em acesso lícito à norma completa e template do venue. O ano 2025 da NBR 6023 foi confirmado em guias de bibliotecas universitárias. |
@@ -34,9 +35,16 @@ Este fluxo trata `article/main.tex` como **protocolo exploratório de compreens�
 5. **Validar instrumento**: revisar tarefas sobre compreensão de gráfico e leitura de estado/bioma; decidir se haverá busca de fonte; definir respostas aceitáveis com IBGE/INPE e avaliar separadamente se a acessibilidade tem método viável.
 6. **Coletar após liberação**: divulgar participação voluntária no público autorizado; registrar apenas dados mínimos; assegurar privacidade na plataforma e armazenar em local institucional restrito.
 7. **Analisar**: reportar números e denominadores por tarefa, distribuições de clareza/confiança e dificuldades; explicitar amostra pequena/de conveniência; não inferir causalidade, efeito de aprendizagem ou prevalência ampla.
-8. **Escrever com atribuição**: redigir da matriz de evidências, sinalizar transcrições, citar também paráfrases, sintetizar fontes e conferir fidelidade, versões próprias, imagens e código.
-9. **Auditar similaridade e normalizar**: se autorizada, usar ferramenta de similaridade como apoio; revisar correspondências uma a uma e registrar decisões, sem limiar automático. Aplicar template do veículo e revisar referências/citações manualmente.
-10. **Congelar release**: checar versão do app/artigo, commit, PDF e export; nunca sobrescrever release publicada; verificar que nenhum dado pessoal ou bruto foi incluído.
+8. **Escrever com ABCD e atribuição**: abrir parágrafos com sua ideia/função; apresentar base relevante; explicar a relação analiticamente; fechar com inferência proporcional ou transição. Procurar evidência que teste a afirmação, inclusive evidência contrária. Citar durante o rascunho, sinalizar transcrições, citar paráfrases, sintetizar fontes e conferir fidelidade, versões próprias, imagens e código.
+9. **Testar clareza e revisar o argumento**: explicar cada conceito para uma pessoa não especialista, definir termos necessários e voltar à precisão disciplinar. Reconhecer padrões, redundâncias, lacunas e transições no conjunto. Não forçar todos os parágrafos a terem citações nem encerrar com opinião sem suporte.
+10. **Auditar similaridade e normalizar**: se autorizada, usar ferramenta de similaridade como apoio; revisar correspondências uma a uma e registrar decisões, sem limiar automático. Aplicar template do veículo e revisar referências/citações manualmente.
+11. **Congelar release**: checar versão do app/artigo, commit, PDF e export; nunca sobrescrever release publicada; verificar que nenhum dado pessoal ou bruto foi incluído.
+
+### Regra de escrita ABCD
+
+Use [PROTOCOLO-ESCRITA-ABCD.md](PROTOCOLO-ESCRITA-ABCD.md) como roteiro principal de parágrafo e revisão. A frase A explicita o ponto autoral; B traz dado, fonte, resultado ou premissa verificável; C interpreta a relação, com limites e divergências; D sintetiza ou conduz ao próximo argumento. Se B revelar que A está errada ou exagerada, revise A. A regra não exige uma quantidade fixa de frases, citação em todo parágrafo, citação sempre na segunda frase ou opinião pessoal no fechamento. Métodos, resultados, definições e transições podem usar outra configuração se ela for mais clara e fiel ao gênero científico.
+
+No rascunho, pode-se deixar acabamento visual para a normalização, mas a fonte e a localização da evidência precisam ser anotadas e a citação vinculada desde a primeira redação. O teste Feynman serve para encontrar jargão indefinido ou raciocínio obscuro; não é para infantilizar o texto nem retirar nuances ou ressalvas científicas.
 
 ## 3. Uso de ferramentas e versões
 
