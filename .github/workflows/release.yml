@@ -45,6 +45,9 @@ jobs:
         run: |
           mkdir -p release-assets
           latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/main.tex
+      - name: Compile Project Integrator PDF
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/projeto-integrador.tex
       - name: Package static site and article sources
         run: |
           python3 - <<'PY'
@@ -57,6 +60,7 @@ jobs:
           app_version = json.loads(Path("package.json").read_text())["version"]
           paper_version = Path("article/VERSION").read_text().strip()
           assets = Path("release-assets")
+          shutil.copy2(assets / "projeto-integrador.pdf", assets / "projeto-integrador-planeta-consciente-2026.pdf")
           with zipfile.ZipFile(assets / f"planeta-consciente-web-{app_version}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
               for path in sorted(Path("out").rglob("*")):
                   if path.is_file():
@@ -78,4 +82,5 @@ jobs:
           files: |
             release-assets/planeta-consciente-web-*.zip
             release-assets/artigo-planeta-consciente-*.pdf
+            release-assets/projeto-integrador-planeta-consciente-*.pdf
             release-assets/fontes-artigo-*.zip

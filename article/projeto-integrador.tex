@@ -1,0 +1,123 @@
+\documentclass[12pt,oneside,a4paper,brazil]{abntex2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[numbers]{natbib}
+\usepackage{setspace}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,
+ pdftitle={Transparência de fontes e compreensão de conteúdo ambiental no Planeta Consciente},
+ pdfauthor={Ana Santiago},pdfsubject={Projeto Integrador em Ciência e Engenharia da Computação}}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.15cm}
+\OnehalfSpacing
+\urlstyle{same}
+\newcommand{\pendente}[1]{\textit{[A confirmar: #1]}}
+\newcommand{\titulopesquisa}{Transparência das fontes e compreensão de conteúdo ambiental em um site educativo interativo: estudo de caso do Planeta Consciente}
+\begin{document}
+\begin{capa}
+\begin{center}
+\textbf{INSTITUIÇÃO DE ENSINO: NÃO INFORMADA}\\
+\textbf{CURSO TÉCNICO: NÃO INFORMADO}\\[2cm]
+\textbf{PROJETO INTEGRADOR}\\[3cm]
+\textbf{\MakeUppercase{Ana Santiago}}\\[3cm]
+\textbf{\MakeUppercase{\titulopesquisa}}\\[3cm]
+\textbf{\pendente{cidade}}\\
+\textbf{2026}
+\end{center}
+\vfill
+\begin{center}\textbf{Professor(a): não informado}\end{center}
+\end{capa}
+
+\begin{folhaderosto}
+\begin{center}\textbf{\MakeUppercase{Ana Santiago}}\end{center}
+\vspace{3cm}
+\begin{center}\textbf{\MakeUppercase{\titulopesquisa}}\end{center}
+\vspace{2cm}
+\hfill\begin{minipage}{0.52\textwidth}
+Projeto Integrador apresentado ao curso \pendente{nome do curso e instituição} como requisito parcial de avaliação.\\[0.5cm]
+Orientador(a): \pendente{nome do(a) professor(a)/orientador(a)}.
+\end{minipage}
+\vfill
+\begin{center}\pendente{cidade}\\2026\end{center}
+\end{folhaderosto}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\textual
+\chapter{Introdução}
+Sites de educação ambiental podem combinar textos, dados, gráficos, mapas e recursos interativos para apresentar fenômenos complexos. O Planeta Consciente é o artefato de software que delimita este projeto; a proposta examina como a apresentação das fontes e das representações ambientais pode ser avaliada de forma sistemática. O estudo parte de uma questão de qualidade da informação e de interação: para que uma afirmação seja verificável, sua evidência, recorte temporal, unidade e proveniência precisam ser recuperáveis; para que uma representação seja interpretável, seus títulos, legendas e escalas devem comunicar o que os dados permitem concluir.
+
+A questão de pesquisa é: \textbf{como a rastreabilidade das afirmações e a apresentação de textos, gráficos e do mapa de biomas do Planeta Consciente permitem que usuários compreendam e verifiquem as informações ambientais comunicadas?} A investigação é relevante para Ciência e Engenharia da Computação por relacionar conteúdo, visualização de dados, usabilidade e qualidade de um sistema web. O caso não permite, por si só, generalizar conclusões a outros sites ou afirmar mudanças de aprendizagem e comportamento.
+
+Este documento é um projeto de pesquisa em fase de planejamento. A etapa documental pode ser especificada desde já; qualquer etapa com participantes permanece condicionada à definição do público, do instrumento e do procedimento institucional de ética. Não há recrutamento, coleta, resultado empírico ou aprovação ética declarada. A autoria indicada segue o arquivo acadêmico existente no repositório e deve ser confirmada pela estudante antes da entrega.
+
+\section{Objetivos}
+\subsection{Objetivo geral}
+Avaliar a rastreabilidade das informações e a compreensão e usabilidade do conteúdo ambiental apresentado pelo Planeta Consciente, por meio de um estudo de caso exploratório, para elaborar recomendações verificáveis de melhoria.
+
+\subsection{Objetivos específicos}
+\begin{enumerate}
+\item Inventariar afirmações factuais, quantitativas e geográficas do site e classificá-las segundo fonte, correspondência, atualidade, escopo e contexto necessários para sua verificação.
+\item Examinar, em tarefas documentais e, somente se houver autorização institucional, em avaliação formativa com usuários, a interpretação de gráficos, do mapa de biomas e da localização de fontes, sintetizando limitações e recomendações de projeto.
+\end{enumerate}
+
+\section{Metodologia}
+A pesquisa será exploratória e descritiva, estruturada como estudo de caso de um artefato web, com duas fases. A unidade documental será cada afirmação verificável em texto, dado ou visualização e sua evidência associada. Se a instituição liberar uma avaliação com pessoas, a unidade de observação será a resposta por tarefa e por item de percepção. A versão do site deverá ser congelada e identificada por tag e hash do commit, junto com data, rotas examinadas e ambiente de navegação, para tornar o recorte reproduzível.
+
+Na primeira fase, será construído um inventário de afirmações, com identificador, localização no sistema, tipo (por exemplo, numérica, temporal ou geográfica), fonte, autoria institucional, data, unidade/população quando pertinente, licença e correspondência entre a fonte e a afirmação. A classificação será definida antes da análise, com categorias como confirmada, parcialmente sustentada, não localizada, desatualizada ou ambígua. Gráficos e mapa serão examinados quanto a título, escala, legenda, unidades, período, notas e coerência com as fontes. O protocolo e as decisões serão registrados; uma amostra deverá receber revisão independente e divergências serão resolvidas conforme regra documentada.
+
+A segunda fase é condicional, não autorizada no presente projeto. O plano preliminar prevê questionário remoto assíncrono com tarefas curtas: interpretar um gráfico ambiental, selecionar um estado e explicar o bioma representado e, caso se decida incluir essa tarefa, localizar a fonte de uma afirmação. Um gabarito será verificado contra fontes institucionais, incluindo materiais do IBGE para o recorte de biomas \cite{ibge}. Clareza e confiança serão perguntadas separadamente após cada tarefa; confiança percebida não será tratada como prova de exatidão. A estimativa inicial de 9 a 20 participantes por conveniência serve apenas à avaliação formativa e não representa uma população. Público, faixa etária, recrutamento, critérios de inclusão, instrumento final e tamanho de amostra permanecem pendentes.
+
+A análise da fase documental apresentará contagens e proporções com denominadores, justificativa das decisões e exemplos não protegidos. Para a eventual fase com pessoas, as respostas às tarefas serão resumidas por contagens e proporções; clareza e confiança serão descritas separadamente, e comentários voluntários serão sintetizados por categorias explicitadas. Respostas ausentes, parciais e ambíguas serão reportadas. Não se inferirá causalidade, prevalência populacional, aprendizagem duradoura ou mudança de comportamento a partir desse desenho exploratório.
+
+Antes de qualquer convite, piloto com participantes ou coleta, a estudante deve confirmar com o curso e a instituição o rito ético aplicável e obter a decisão ou aprovação necessária. A Resolução CNS nº 510/2016 e a legislação brasileira superveniente devem ser interpretadas pela instância institucional competente, sem presumir dispensa por anonimização ou uso de formulário. Se houver tratamento de dados pessoais, o plano deverá definir finalidade, base legal, papéis, minimização, transparência, segurança, acesso, retenção e descarte segundo a LGPD e orientações institucionais. Formulários não devem exigir login, e-mail ou identificadores dispensáveis; respostas brutas, consentimentos e listas de recrutamento não serão publicados no repositório. Caso aprovação e prazo não sejam compatíveis, o trabalho deverá limitar-se ao protocolo e à fase documental.
+
+\chapter{Referencial teórico}
+\section{Rastreabilidade e qualidade da informação}
+A rastreabilidade conecta uma afirmação publicada à evidência que a sustenta e permite conferir escopo, data, método e unidade. Em um site educativo, uma lista bibliográfica geral não basta para identificar qual fonte sustenta cada número ou explicação. O inventário proposto registra essa relação em nível de afirmação e evita tratar a simples presença de um link como evidência de correspondência. O critério de classificação precisa ser definido previamente para reduzir decisões ad hoc e possibilitar revisão independente.
+
+\section{Visualização e compreensão em sistemas web}
+Gráficos e mapas são interfaces de interpretação: títulos, escalas, legenda, unidades, limites geográficos e recorte temporal participam do significado comunicado. O projeto examinará esses elementos como propriedades verificáveis do artefato e formulará tarefas que peçam interpretação em palavras próprias. O acerto em uma tarefa imediata indicará somente a resposta observada naquele contexto; não medirá retenção nem efeito educativo. O mapa de biomas deverá ser confrontado com fonte institucional pertinente, como a cartografia temática do IBGE, sem assumir que uma representação simplificada reproduz limites oficiais.
+
+\section{Avaliação empírica em engenharia de software}
+A pesquisa de estudo de caso em engenharia de software requer explicitar contexto, unidade de análise, seleção do caso, procedimentos, evidências e ameaças à validade. As recomendações da ACM SIGSOFT serão consultadas para adequar o relato ao método efetivamente realizado, sem rotular como experimento um estudo descritivo \cite{sigsoft}. A combinação entre inventário documental e respostas de tarefas permite triangulação limitada; a segunda fonte só existirá após autorização, execução e documentação do protocolo. Uma amostra de conveniência pequena é útil para localizar problemas formativos, mas restringe estimativas e generalizações.
+
+\section{Integridade acadêmica, citações e proteção de participantes}
+Cada afirmação factual do texto deverá ser apoiada por fonte consultada e rastreável. A escrita seguirá uma revisão de argumento, evidência, interpretação e limite, com correspondência entre citações e referências e identificação transparente de reutilização e assistência por inteligência artificial, quando exigida pela instituição ou pelo veículo. As diretrizes do CNPq tratam de integridade e crédito das fontes; ferramentas de similaridade podem localizar trechos que demandam análise, mas uma pontuação isolada não determina plágio \cite{cnpq}.
+
+A eventual participação de pessoas exige consulta ética institucional antes da atividade, informação clara sobre voluntariedade, riscos, desistência e tratamento de dados, além de minimização e salvaguardas compatíveis com a LGPD. A Lei nº 14.874/2024, o Decreto nº 12.651/2025 e a Resolução CNS nº 510/2016 são referências rastreáveis para a análise, mas a definição do procedimento concreto cabe à instituição e à instância competente \cite{brasil14874,brasil12651,cns510}. O tratamento de dados pessoais também deverá observar a LGPD e a orientação da ANPD para pesquisa acadêmica \cite{lgpd,anpd}. A autora não deverá coletar ou publicar dados pessoais, respostas identificáveis ou consentimentos em repositório público.
+
+\chapter{Considerações finais}
+O projeto delimita uma investigação exploratória sobre rastreabilidade de fontes, interpretação de conteúdos ambientais e qualidade de interação no Planeta Consciente. Os dois objetivos específicos organizam um inventário documental e, condicionalmente, uma avaliação formativa com tarefas de compreensão. A proposta descreve procedimentos e critérios planejados; não apresenta resultados e não declara aprovação ética.
+
+Antes da execução, ainda é necessário confirmar instituição, curso, cidade, professora/orientadora, autoria, público e faixa etária, fechar tarefas e instrumento, validar o gabarito, decidir sobre a localização de fontes e obter orientação formal sobre ética e proteção de dados. O prazo registrado nos documentos do projeto é 30 de outubro de 2026, mas há indicação conflitante de que o prazo não estaria definido; a estudante deve confirmar a data com o curso. Se o rito ético não couber no cronograma, não se deve substituir aprovação ausente por coleta informal: o escopo deve permanecer documental e os resultados devem ser limitados ao que foi realmente realizado.
+
+\postextual
+\begin{thebibliography}{99}
+\bibitem{sigsoft} ACM SIGSOFT. \textit{Empirical standards for software engineering}. Disponível em: \url{https://www2.sigsoft.org/EmpiricalStandards/}. Acesso em: 6 out. 2026.
+\bibitem{ibge} INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. \textit{Biomas e Sistema Costeiro-Marinho do Brasil}. Disponível em: \url{https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html?lang=pt-BR}. Acesso em: 6 out. 2026.
+\bibitem{brasil14874} BRASIL. \textit{Lei nº 14.874, de 28 de maio de 2024}. Dispõe sobre a pesquisa com seres humanos e institui o Sistema Nacional de Ética em Pesquisa com Seres Humanos. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14874.htm}. Acesso em: 6 out. 2026.
+\bibitem{brasil12651} BRASIL. \textit{Decreto nº 12.651, de 7 de outubro de 2025}. Regulamenta a Lei nº 14.874, de 28 de maio de 2024. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12651.htm}. Acesso em: 6 out. 2026.
+\bibitem{cns510} BRASIL. Conselho Nacional de Saúde. \textit{Resolução nº 510, de 7 de abril de 2016}. Disponível em: \url{https://www.gov.br/conselho-nacional-de-saude/pt-br/atos-normativos/resolucoes/2016/resolucao-no-510.pdf/view}. Acesso em: 6 out. 2026.
+\bibitem{lgpd} BRASIL. \textit{Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais}. Texto compilado. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm}. Acesso em: 6 out. 2026.
+\bibitem{anpd} BRASIL. Autoridade Nacional de Proteção de Dados. \textit{Guia orientativo: tratamento de dados pessoais para fins acadêmicos e para a realização de estudos e pesquisas}. Disponível em: \url{https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-tratamento-de-dados-pessoais-para-fins-academicos-e-para-a-realizacao-de-estudos-e-pesquisas}. Acesso em: 6 out. 2026.
+\bibitem{cnpq} BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 6 out. 2026.
+\end{thebibliography}
+\chapter*{Apêndices}
+\addcontentsline{toc}{chapter}{Apêndices}
+Não há apêndices preparados nesta versão. O roteiro de tarefas, o instrumento e o manual de codificação deverão ser anexados somente após definição, revisão e autorização institucional.
+\chapter*{Anexos}
+\addcontentsline{toc}{chapter}{Anexos}
+Não há anexos nesta versão. Documentos institucionais ou materiais de terceiros só serão incluídos com autorização e atribuição adequadas.
+\end{document}
+
