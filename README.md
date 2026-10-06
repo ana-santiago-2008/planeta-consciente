@@ -30,12 +30,9 @@ pnpm start
 
 O workflow em `.github/workflows/deploy.yml` gera uma exportação estática e publica automaticamente cada atualização da branch `main` em [https://ana-santiago-2008.github.io/planeta-consciente/](https://ana-santiago-2008.github.io/planeta-consciente/). Para a primeira publicação, em **Settings → Pages**, selecione **GitHub Actions** como origem de publicação. O diretório `out/` é gerado no build e enviado pelo workflow; ele não precisa ser commitado.
 
-## Artigo científico e releases
+## Artigo do Projeto Integrador e releases
 
-O manuscrito LaTeX, o plano exploratório de avaliação com usuários, o fluxo acadêmico, os protocolos ABCD e de originalidade estão em [`article/`](article/), [`docs/pesquisa/PLANO-ESTUDO-USUARIOS.md`](docs/pesquisa/PLANO-ESTUDO-USUARIOS.md), [`docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md`](docs/pesquisa/WORKFLOW-ESCRITA-ACADEMICA.md), [`docs/pesquisa/PROTOCOLO-ESCRITA-ABCD.md`](docs/pesquisa/PROTOCOLO-ESCRITA-ABCD.md) e [`docs/pesquisa/PROTOCOLO-ORIGINALIDADE.md`](docs/pesquisa/PROTOCOLO-ORIGINALIDADE.md). Cada tag `v*` aciona `.github/workflows/release.yml`, que compila o site e o artigo e anexa ZIPs do site estático, do PDF e das fontes à GitHub Release. As versões do aplicativo e do manuscrito são mantidas separadamente. O manuscrito é um protocolo preliminar, sem resultados empíricos; não inicie recrutamento ou coleta antes de resolver a avaliação ética institucional e os requisitos de proteção de dados. Releases `-protocolo.*` são pré-lançamentos.
-
-Para gerar uma release versionada, atualize `package.json` e `article/VERSION`, revise o PDF e o build, crie uma tag (por exemplo `v0.2.0-protocolo.1`) no commit revisado e envie a tag ao GitHub. O workflow cria uma pré-release para tags com `-protocolo.`. Releases sem esse sufixo devem ser usadas somente depois da revisão humana final e da validação dos resultados.
-
+`article/main.tex` é o artigo do Projeto Integrador sobre o desenvolvimento do site, com fonte LaTeX, verificações de estrutura e citações e limites de páginas por seção validados no fluxo de release. O plano exploratório de eventual avaliação com usuários e os protocolos de escrita e originalidade permanecem em `docs/pesquisa/`. Não há resultados de estudo com participantes; o artigo relata a implementação e a verificação técnica do software. Cada tag `v*` aciona `.github/workflows/release.yml`, que compila o site estático e o PDF, verifica os limites de páginas e anexa ZIPs do site, PDF e fontes à GitHub Release. As versões do aplicativo e do artigo são mantidas separadamente em `package.json` e `article/VERSION`. Tags `-projeto.*` e `-protocolo.*` geram pré-lançamentos. Para uma nova versão, atualize as versões, revise o PDF e o build, crie uma tag no commit revisado e envie-a ao GitHub.
 ## Estrutura
 
 - `app/`: entrada da página, layout e estilos globais.

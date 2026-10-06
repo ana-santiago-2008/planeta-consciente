@@ -45,9 +45,8 @@ jobs:
         run: |
           mkdir -p release-assets
           latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/main.tex
-      - name: Compile Project Integrator PDF
-        run: |
-          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error -outdir=release-assets article/projeto-integrador.tex
+      - name: Validate article section page limits
+        run: python3 scripts/check-project-integrador-pages.py release-assets/main.aux
       - name: Package static site and article sources
         run: |
           python3 - <<'PY'
@@ -60,12 +59,11 @@ jobs:
           app_version = json.loads(Path("package.json").read_text())["version"]
           paper_version = Path("article/VERSION").read_text().strip()
           assets = Path("release-assets")
-          shutil.copy2(assets / "projeto-integrador.pdf", assets / "projeto-integrador-planeta-consciente-2026.pdf")
           with zipfile.ZipFile(assets / f"planeta-consciente-web-{app_version}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
               for path in sorted(Path("out").rglob("*")):
                   if path.is_file():
                       archive.write(path, path.relative_to("out"))
-          shutil.copy2(assets / "main.pdf", assets / f"artigo-planeta-consciente-{paper_version}.pdf")
+          shutil.copy2(assets / "main.pdf", assets / f"artigo-projeto-integrador-{paper_version}.pdf")
           with zipfile.ZipFile(assets / f"fontes-artigo-{paper_version}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
               for path in sorted(Path("article").rglob("*")):
                   if path.is_file():
@@ -77,10 +75,9 @@ jobs:
         with:
           name: ${{ github.ref_name }}
           generate_release_notes: true
-          prerelease: ${{ contains(github.ref_name, '-protocolo.') }}
+          prerelease: ${{ contains(github.ref_name, '-protocolo.') || contains(github.ref_name, '-projeto.') }}
           make_latest: false
           files: |
             release-assets/planeta-consciente-web-*.zip
-            release-assets/artigo-planeta-consciente-*.pdf
-            release-assets/projeto-integrador-planeta-consciente-*.pdf
+            release-assets/artigo-projeto-integrador-*.pdf
             release-assets/fontes-artigo-*.zip

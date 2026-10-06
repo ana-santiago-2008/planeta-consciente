@@ -1,257 +1,135 @@
-\documentclass[article,12pt,oneside,a4paper,brazil]{abntex2}
-
+\documentclass[12pt,oneside,a4paper,brazil]{abntex2}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{microtype}
 \usepackage{indentfirst}
 \usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage{xurl}
 \usepackage{hyperref}
 \usepackage[numbers]{natbib}
 \usepackage{setspace}
-
-\hypersetup{
-  colorlinks=true,
-  linkcolor=black,
-  citecolor=black,
-  urlcolor=blue,
-  pdftitle={Protocolo de avaliação exploratória da compreensão e experiência de uso do Planeta Consciente},
-  pdfauthor={Ana Santiago},
-  pdfsubject={Protocolo preliminar de estudo de caso em Ciência da Computação},
-  pdfkeywords={educação ambiental, compreensão, experiência do usuário, visualização de dados}
-}
-
-\titulo{Protocolo de avaliação exploratória da compreensão e experiência de uso do Planeta Consciente}
-\tituloestrangeiro{Protocol for an exploratory evaluation of comprehension and user experience on Planeta Consciente}
-\autor{Ana Santiago}
-\local{Brasil}
-\data{2026}
-\newcommand{\paperversion}{0.2.0-protocolo.3}
-
+\usepackage[top=3cm,left=3cm,right=2cm,bottom=2cm]{geometry}
+\hypersetup{colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue,
+ pdftitle={Planeta Consciente: desenvolvimento de um site estático interativo para educação ambiental},
+ pdfauthor={Ana Santiago},pdfsubject={Artigo de Projeto Integrador — Curso Técnico em Análise e Desenvolvimento de Sistemas}}
 \setlength{\parindent}{1.25cm}
 \setlength{\parskip}{0.15cm}
 \OnehalfSpacing
-
+\urlstyle{same}
+\newcommand{\projectversion}{0.3.0-projeto.1}
+\newcommand{\tituloartigo}{Planeta Consciente: desenvolvimento de um site estático interativo para educação ambiental}
 \begin{document}
-\maketitle
+\begin{capa}
+\begin{center}
+\textbf{CENTRO DE EDUCAÇÃO DE TEMPO INTEGRAL (CETI) LUCAS MEIRELES}\\
+\textbf{CURSO TÉCNICO EM ANÁLISE E DESENVOLVIMENTO DE SISTEMAS}\\[0.4cm]
+Código INEP 22161201 — localização rural\\[1.8cm]
+\textbf{PROJETO INTEGRADOR}\\[2.4cm]
+\textbf{ANA SANTIAGO}\\[2.4cm]
+\textbf{\MakeUppercase{\tituloartigo}}\\[2.4cm]
+BR-316, km 24, s/n, Chapadinha Sul\\
+Teresina — Piauí\\2026
+\end{center}
+\vfill
+\begin{center}\textbf{Orientador: Aloisio de Araújo Costa Magalhães}\end{center}
+\end{capa}
+
+\begin{folhaderosto}
+\begin{center}\textbf{ANA SANTIAGO}\end{center}
+\vspace{2.5cm}
+\begin{center}\textbf{\MakeUppercase{\tituloartigo}}\end{center}
+\vspace{1.5cm}
+\hfill\begin{minipage}{0.52\textwidth}
+Artigo apresentado ao Curso Técnico em Análise e Desenvolvimento de Sistemas do Centro de Educação de Tempo Integral Lucas Meireles como atividade do Projeto Integrador.\\[0.5cm]
+Orientador: Aloisio de Araújo Costa Magalhães.
+\end{minipage}
+\vfill
+\begin{center}Teresina — Piauí\\2026\end{center}
+\end{folhaderosto}
 
 \begin{resumo}
-Este artigo apresenta um protocolo preliminar para avaliar, de forma exploratória, a compreensão e a experiência de uso do site educativo Planeta Consciente. A questão proposta é como participantes interpretam conteúdos ambientais, gráficos e o mapa de biomas, e como avaliam clareza e confiança nas informações. Planeja-se um questionário remoto assíncrono com tarefas curtas de interpretação de gráfico e mapa, seguido de itens de percepção. A previsão de 9 a 20 participantes é exploratória e por conveniência; público elegível, recrutamento e instrumento final ainda dependem de definição com a instituição. Serão descritas respostas corretas por tarefa, dificuldades, confiança percebida e comentários voluntários, sem inferência causal ou generalização populacional. O manuscrito registra somente o protocolo: não houve recrutamento, coleta, avaliação de aprendizagem ou aprovação ética declarada. A coleta ficará suspensa até confirmação formal do processo ético aplicável e aprovação necessária, consentimento, configuração de privacidade e plano LGPD.
+Este artigo relata o desenvolvimento do Planeta Consciente, um site estático interativo de educação ambiental produzido como Projeto Integrador do Curso Técnico em Análise e Desenvolvimento de Sistemas do CETI Lucas Meireles. O objetivo foi organizar conteúdos temáticos, gráficos, ações cotidianas, curiosidades, notícias e um mapa interativo de biomas em uma aplicação web responsiva e publicável sem servidor de aplicação. O trabalho adotou um processo descritivo de engenharia: levantamento do escopo, organização dos dados, implementação modular em Next.js e React, exportação estática, integração contínua e publicação no GitHub Pages. O artefato reúne navegação por seções, gráficos renderizados com Recharts, seleção de estados em mapa SVG e controles interativos de interface. A verificação realizada foi técnica: o build e a implantação automatizada foram concluídos pelo GitHub Actions. Não foram conduzidos testes com participantes nem avaliação formal de aprendizagem, usabilidade ou acessibilidade. A inspeção do código identificou limitações de rastreabilidade das fontes ambientais, simplificação da associação estado-bioma e necessidade de revisar governança da ferramenta analítica carregada em produção. Conclui-se que o projeto entregou um protótipo funcional publicado, cuja evolução depende de validação factual, acessibilidade e avaliação com usuários.
 
 \vspace{\onelineskip}
-\noindent\textbf{Palavras-chave}: educação ambiental; compreensão; experiência do usuário; visualização de dados; protocolo de pesquisa.
+\noindent\textbf{Palavras-chave}: educação ambiental; desenvolvimento web; Next.js; visualização de dados; mapas interativos.
 \end{resumo}
 
-\begin{resumo}[Abstract]
-This article presents a preliminary protocol for an exploratory evaluation of comprehension and user experience on Planeta Consciente, an educational website. The proposed question concerns how participants interpret environmental content, charts, and the biome map, and how they rate clarity and trust. The planned method is a remote asynchronous questionnaire with brief chart and map interpretation tasks followed by perception items. The anticipated sample of 9 to 20 participants is exploratory and convenience-based; eligible population, recruitment, and final instrument still require institutional definition. We will describe task-level correct responses, difficulties, perceived confidence, and voluntary comments, without causal inference or population generalization. This manuscript reports a protocol only: no recruitment, data collection, learning evaluation, or ethics approval has been declared. Data collection is on hold until the applicable ethics process is formally confirmed and any required approval, consent, privacy settings, and data-protection plan are in place.
+\noindent\textbf{Versão do artigo}: \projectversion.\\
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\textual
+\chapter{Introdução}\label{page:introducao:start}
+A educação ambiental em meios digitais pode combinar explicações, dados e interação para apresentar temas como água, florestas, reciclagem, mudanças climáticas e biomas. O desafio de desenvolvimento é organizar esses recursos em uma interface navegável sem confundir visualização atraente com informação verificada. Este trabalho apresenta o Planeta Consciente como artefato de software construído no Projeto Integrador do Curso Técnico em Análise e Desenvolvimento de Sistemas.
 
-\vspace{\onelineskip}
-\noindent\textbf{Keywords}: environmental education; comprehension; user experience; data visualization; research protocol.
-\end{resumo}
+O problema de projeto foi estruturar, em um único site, conteúdos ambientais e componentes interativos que pudessem ser publicados em hospedagem estática. A questão orientadora é: como implementar e publicar uma aplicação web responsiva que organize conteúdos ambientais, gráficos e um mapa interativo, mantendo uma arquitetura simples e passível de evolução? O escopo deste artigo é o desenvolvimento do artefato e a verificação técnica de compilação e publicação; não se afirma que o site aumente conhecimento, mude comportamento ou tenha usabilidade validada por participantes.
 
-\textbf{Estado do manuscrito}: protocolo preliminar, versão \paperversion. Ainda não é relato de resultados nem submissão final. Antes de submeter, confirmar vínculo institucional, regras do veículo, versão integral licenciada das normas ABNT aplicáveis, autoria e revisão humana de todo o conteúdo.
+A escolha por exportação estática viabiliza servir HTML, CSS, JavaScript e arquivos públicos sem manter um servidor Next.js em execução, respeitadas as limitações desse modo de implantação \cite{nextstatic}. A aplicação foi publicada no GitHub Pages por fluxo de integração contínua, que constrói o site e envia os arquivos estáticos ao ambiente de publicação \cite{ghpages}.
+\label{page:introducao:end}
 
-\textbf{Declaração de uso de inteligência artificial}: ferramentas OpenAI Codex foram usadas para apoiar a estrutura inicial deste protocolo, a revisão de referências públicas e a preparação do código LaTeX e do fluxo de compilação. A autora deve verificar cada afirmação, fonte, interpretação normativa e decisão metodológica e assumir responsabilidade pelo texto final. Atualizar esta declaração conforme a política da instituição, do veículo e, quando aplicável, as diretrizes vigentes do CNPq.
+\chapter{Objetivos}\label{page:objetivos:start}
+\section{Objetivo geral}
+Desenvolver e publicar o Planeta Consciente como site estático interativo de educação ambiental, organizando conteúdos, gráficos e mapa em uma aplicação web modular e verificável.
 
-\section{Introdução}
-
-Sites de educação ambiental reúnem textos, gráficos, mapas e atividades em uma mesma experiência. Além da correção das fontes, importa saber se leitores conseguem interpretar as representações, localizar informação relevante e distinguir o que compreendem do que apenas presumem. Essa avaliação exploratória pode identificar barreiras e orientar melhorias; sem desenho comparativo ou medidas adequadas, não permite atribuir aprendizagem ao site nem demonstrar que uma interação específica a causou.
-
-O Planeta Consciente é um site em português brasileiro que organiza temas ambientais, gráficos, ações cotidianas, curiosidades, um mapa dos biomas e uma seção intitulada “Notícias”. A autora indicou como interesse principal entender a experiência dos usuários, a compreensão dos conteúdos, gráficos e mapa, além de clareza e confiança. Também sugeriu ampliar atividades interativas e preservar o estudo dos biomas. A hipótese de que o público tenha pouco conhecimento ambiental é uma percepção a verificar, não um fato estabelecido sobre os participantes.
-
-O plano é um estudo de caso exploratório com questionário remoto assíncrono e tarefas de interpretação, estimando 9 a 20 participantes por conveniência. O público elegível ainda não está definido, não há orientador identificado, e a necessidade de avaliação ética institucional precisa ser verificada. A data informada para entrega é 30 de outubro de 2026, com orçamento zero. Por isso, a proposta distingue decisões já expressas das pendentes e não presume que o prazo permita recrutar, obter aprovação, coletar e analisar dados. Nenhuma participação ou coleta está autorizada pelo protocolo atual.
-
-\subsection{Problema e questão de pesquisa}
-
-O problema de pesquisa é que não se sabe, com evidência obtida junto a usuários, quais partes da apresentação ambiental são compreendidas, claras e confiáveis para o público a que o site se destina.
-
-\begin{quote}
-\textbf{QP1:} Como participantes do público elegível interpretam informações ambientais apresentadas em conteúdos, gráficos e no mapa de biomas do Planeta Consciente, e como avaliam sua clareza e confiabilidade?
-\end{quote}
-
-\textbf{QP2:} Que dificuldades de compreensão, navegação ou acessibilidade são observadas nas tarefas exploratórias e que oportunidades de melhoria os dados justificam?
-
-\subsection{Objetivo e contribuição}
-
-O objetivo é descrever o desempenho observado nas tarefas e as percepções de um pequeno grupo exploratório, sem estimar efeito causal ou representar a população. As contribuições previstas são (i) instrumento reproduzível de tarefas e questões, (ii) síntese descritiva das respostas e dificuldades e (iii) recomendações priorizadas para conteúdo, mapa, gráficos e interatividade. Uma verificação documental das respostas corretas e fontes será necessária para construir o gabarito antes de qualquer coleta. São produtos planejados, ainda não resultados obtidos.
-
-\section{Fundamentação e normas de relato}
-
-O trabalho segue a lógica de estudo de caso exploratório em engenharia de software e avaliação de experiência de usuário. O protocolo deverá relatar contexto, público elegível, recrutamento, tarefas, instrumento, procedimento, análise e limitações. Os padrões empíricos da ACM SIGSOFT recomendam selecionar o padrão correspondente ao método efetivamente empregado; o estudo não será chamado de experimento, pois não prevê comparação controlada nem inferência causal \cite{sigsoft}.
-
-Para um artigo submetido a periódico, a ABNT NBR 6022:2018 fornece princípios de apresentação do artigo, complementados pelas normas de citações e referências e pelas instruções específicas do veículo. A versão de referências consultada precisa ser atual: a NBR 6023:2025 substitui a edição de 2018 com emenda; a NBR 10520:2023 trata de citações; a NBR 6028:2021 trata de resumos; e a NBR 6024:2012 trata da numeração de seções \cite{abnt6022,abnt6023,abnt10520,abnt6028,abnt6024}. A NBR 14724:2024 é pertinente quando o produto também for trabalho acadêmico institucional como TCC; não se deve presumir que seu leiaute prevaleça sobre o template de uma revista ou evento \cite{ufes14724}.
-
-A suíte abnTeX2 fornece uma classe LaTeX útil para documentos brasileiros, mas sua documentação pública alerta que o suporte bibliográfico não acompanha automaticamente as edições recentes da NBR 6023. Este projeto não declara conformidade integral só por compilar com uma classe ABNT: as referências são mantidas em formato numérico e precisam de conferência final, item por item, contra a NBR 6023:2025 licenciada e contra o veículo-alvo \cite{abntex2}. A compilação comprova apenas que o fonte produz um PDF.
-
-\section{Método}
-
-\subsection{Protocolo de escrita acadêmica ABCD}
-
-Para planejar e revisar a prosa do artigo, será empregado ABCD como uma heurística de pensamento computacional e organização de parágrafos: \textbf{Abertura} explicita a ideia ou função do parágrafo; \textbf{Base} apresenta evidência, dado, fonte ou premissa pertinente; \textbf{Conteúdo} explica a relação entre a evidência e a pergunta do estudo, distinguindo resultado da fonte e interpretação da autora; \textbf{Desfecho} sintetiza o que se pode concluir ou faz uma transição justificada. A estrutura pretende tornar visível a contribuição autoral sem substituir a avaliação científica.
-
-O procedimento é iterativo, não uma fórmula de contagem de frases. Primeiro se decompõe o argumento em parágrafos com uma função reconhecível. Em seguida, revisam-se padrões entre parágrafos e seções para encontrar repetição, lacunas de evidência, contradições e mudanças abruptas. No rascunho, priorizam-se ideia, evidência e raciocínio em linguagem clara; precisão terminológica, citações, referências e requisitos ABNT são mantidos e conferidos durante a redação e consolidados na revisão. Por último, lê-se cada unidade em sequência, revisando transições e seções até que o texto responda à pergunta de pesquisa.
-
-Como teste de compreensão inspirado na técnica Feynman, a autora deverá explicar o argumento para uma pessoa não especialista, definir termos técnicos necessários e identificar o que ainda não consegue explicar. A simplificação é um diagnóstico de clareza, não licença para apagar incertezas, qualificadores, limites ou precisão conceitual; depois do teste, o texto mantém o vocabulário disciplinar necessário, com definição quando apropriado.
-
-ABCD é um padrão de trabalho, não uma lei universal de composição. Preferencialmente, o texto abre com a ideia do autor e usa evidência onde ela sustenta a afirmação; porém, uma definição, método, resultado, citação breve ou transição pode exigir outra ordem. Nem todo parágrafo precisa de citação externa — por exemplo, procedimentos próprios ou transições — e o desfecho não deve ser uma “opinião” sem base, mas uma inferência limitada pela evidência, uma síntese ou uma ponte lógica. Evita-se tanto iniciar rotineiramente parágrafos com citações isoladas quanto terminar com opinião pessoal não sustentada.
-
-\begin{enumerate}[label=\arabic*.]
-  \item \textbf{A — Abertura:} escreva uma afirmação, pergunta delimitada ou função explícita do parágrafo, sem apresentar como fato um resultado que ainda não existe.
-  \item \textbf{B — Base:} consulte a matriz de leitura e busque evidência que possa sustentar, qualificar ou contrariar a afirmação. Prefira fontes primárias; registre a citação junto à ideia e não procure apenas confirmação.
-  \item \textbf{C — Conteúdo:} explique com palavras próprias o que a evidência mostra e como se relaciona ao argumento; separe descrição, inferência e hipótese e indique divergências ou limites relevantes.
-  \item \textbf{D — Desfecho:} feche com a conclusão autorizada pelo que foi apresentado ou conecte ao próximo passo do raciocínio, sem ampliar o escopo.
-  \item \textbf{Revisão:} se a fonte não sustentar A, reformule ou abandone A; remova redundâncias, confira citações e referências e leia o parágrafo no contexto da seção.
+\section{Objetivos específicos}
+\begin{enumerate}[leftmargin=1.25cm]
+\item Implementar uma interface responsiva composta por seções temáticas, gráficos, ações sustentáveis, curiosidades, notícias e mapa de biomas, com dados estruturados e componentes reutilizáveis.
+\item Automatizar a geração e a publicação do site e dos artefatos acadêmicos, registrando as verificações técnicas executadas e as limitações que requerem validação futura.
 \end{enumerate}
+\label{page:objetivos:end}
 
-Um esqueleto de rascunho permitido é: “\textit{[A] A pergunta/ideia delimitada é ... [B] A fonte/dado ... informa ... (citação e localização). [C] No recorte deste estudo, isso sustenta/qualifica/contraria ... porque ...; permanece a limitação ... . [D] Assim, ...}”. Os campos são instruções provisórias e devem ser substituídos por prosa final; se não houver fonte externa necessária, B deve explicitar dado, procedimento ou premissa própria em vez de inserir citação artificial.
+\chapter{Metodologia}\label{page:metodologia:start}
+Este trabalho é um relato descritivo de desenvolvimento de software, delimitado ao repositório versionado do Planeta Consciente. A unidade de análise é a aplicação e seus componentes, seus dados locais e seus fluxos automatizados de construção e publicação. O procedimento foi organizado em quatro etapas: delimitação do escopo; decomposição da página em componentes; implementação e integração dos dados; e verificação por build de produção e implantação estática. A inspeção é baseada no código e nos workflows do repositório; não corresponde a experimento nem a avaliação com usuários.
 
-\subsection{Protocolo de originalidade, atribuição e prevenção de plágio}
+A página principal compõe cabeçalho, apresentação, conscientização, temas, atitudes sustentáveis, curiosidades, mapa, notícias e rodapé. A camada de conteúdo em TypeScript separa dados dos componentes de apresentação. Next.js com App Router e React fornece a composição da interface; Recharts é usado para gráficos, enquanto o mapa consome geometrias SVG locais e uma tabela de associação entre siglas estaduais e biomas. A aplicação também utiliza Tailwind CSS para estilos e Lucide para ícones. A descrição das bibliotecas segue sua documentação primária \cite{reactstate,recharts}.
 
-A prevenção de plágio será tratada como procedimento transversal de pesquisa e redação, não como uma porcentagem obtida por software. As diretrizes do CNPq requerem crédito adequado às fontes, aspas e referências para citação literal, fidelidade de sentido em paráfrases, consulta à fonte original quando possível, identificação de trabalhos anteriores dos próprios autores e correspondência entre citações e referências \cite{cnpq}. As normas ABNT NBR 10520:2023 e NBR 6023:2025 orientam, respectivamente, citações e referências quando requeridas pelo curso ou veículo; elas não substituem julgamento de integridade nem a política editorial específica \cite{abnt10520,abnt6023}.
+Na verificação técnica, o fluxo de integração instala dependências com arquivo de lock, executa o build estático, valida a estrutura do manuscrito e compila PDFs com LaTeX. O fluxo de publicação transfere a pasta exportada para GitHub Pages. A Release versionada empacota o site e os documentos compilados. Esses procedimentos verificam geração e entrega do artefato; não verificam correção científica de cada dado ambiental, compatibilidade com tecnologias assistivas ou experiência de pessoas usuárias.
+\label{page:metodologia:end}
 
-Antes da redação de cada seção, será mantida uma matriz de leitura com referência completa, DOI/URL, páginas ou seções consultadas, tipo de fonte, ideia extraída e destino previsto no manuscrito. Notas literais serão marcadas como transcrição, com página/localização e aspas desde o momento da anotação; paráfrases serão identificadas como tais e receberão a citação junto à ideia. A redação deverá sintetizar evidências de mais de uma fonte quando pertinente, explicitar a contribuição interpretativa da autora e evitar paráfrase por mera substituição de palavras. Citações secundárias só serão usadas quando a obra original estiver indisponível, identificando essa condição segundo a norma e o estilo do veículo. Toda citação será conferida contra a fonte e toda referência listada deverá corresponder a uma citação efetiva.
+\chapter{Referencial teórico}\label{page:referencial:start}
+\section{Engenharia de aplicações web estáticas}
+A decomposição de interface em componentes permite manter partes com responsabilidades distintas e integrar conteúdo, estado e apresentação. React descreve estado como mecanismo para refletir entradas e mudanças de interface, o que fundamenta controles locais como seleção de tema, estado no mapa e marcação de atitudes \cite{reactstate}. No projeto, o conteúdo temático e os biomas são mantidos em módulos de dados TypeScript, e a página coordena componentes especializados.
 
-Antes da submissão, a autora revisará também relatórios, projetos, apresentações, repositórios e textos próprios anteriores para declarar sobreposições, citar versões anteriores e verificar regras de direitos autorais e do veículo. Resultados e dados não serão divididos artificialmente em publicações redundantes; reutilização textual própria será transparente, justificada e limitada conforme orientação editorial \cite{copeTextRecycle}. Figuras, tabelas, imagens, código, dados e traduções terão proveniência, licença/permissão e atribuição registradas.
+A exportação estática do Next.js gera arquivos que podem ser servidos por hospedagem estática; recursos que dependem de servidor em tempo de requisição ficam fora desse modelo \cite{nextstatic}. Essa propriedade é compatível com GitHub Pages, cujo fluxo oficial de Actions constrói o site, publica o artefato e registra a URL do ambiente \cite{ghpages}. A decisão reduz a necessidade de infraestrutura de execução, mas implica que atualizações do conteúdo dependem de nova compilação e publicação.
 
-\begin{enumerate}[label=\arabic*.]
-  \item Selecionar fontes prioritariamente primárias e confiáveis; registrar identificador persistente, URL, data, edição e localização exata da evidência.
-  \item Redigir a partir da matriz de leitura, mantendo separadas transcrição literal, paráfrase, síntese própria e texto de ferramenta de IA; inserir a citação durante a escrita, não apenas na revisão final.
-  \item Conferir palavra por palavra toda citação direta, sinalizar cortes e acréscimos, e revisar se cada paráfrase preserva o sentido original sem reproduzir sua estrutura distintiva.
-  \item Fazer conferência bidirecional: cada citação no texto encontra sua referência e cada entrada bibliográfica é citada; revisar autoria, ano, título, DOI/URL e localização.
-  \item Revisar sobreposição com trabalhos anteriores da própria autora, preprints e materiais públicos, declarando versões relacionadas e evitando submissão simultânea ou publicação duplicada.
-  \item Se houver ferramenta institucional de similaridade, analisar cada trecho e sua fonte; corrigir ausência de crédito ou transcrição sem marcação e documentar falsos positivos. Não aplicar um limiar percentual como decisão automática: ferramentas reportam similaridade, não decidem se houve plágio \cite{crossrefSimilarity,copyspider}.
-  \item Concluir com leitura humana de autoria, argumentos, fontes, métodos e afirmações; declarar uso de IA conforme política do curso, veículo e CNPq. A responsabilidade integral pelo conteúdo final permanece com a autora \cite{cnpq}.
-\end{enumerate}
+\section{Visualização e rastreabilidade de informação}
+Gráficos e mapas são interfaces de interpretação, não apenas elementos decorativos. Uma visualização exige contexto para que seu público compreenda unidade, período, escala, fonte e limites do dado. Recharts oferece componentes composáveis de gráficos para React; a biblioteca implementa a camada de desenho, mas não valida a veracidade nem a adequação semântica dos valores fornecidos \cite{recharts}. Por isso, cada afirmação ambiental e cada série precisam de fonte específica, recorte e método documentados.
 
-O Zotero poderá apoiar captura e organização de referências, citações e bibliografia; o estilo automático deverá ser conferido contra a norma atual e o template editorial, pois gerenciadores não validam a exatidão nem a adequação de cada referência \cite{zotero}. CopySpider ou ferramentas institucionais como iThenticate/Turnitin podem servir como revisão auxiliar se autorizadas pela instituição. Antes de enviar um manuscrito inédito a qualquer serviço, devem ser conferidos termos, retenção, indexação e privacidade dos arquivos. Um resultado baixo não prova ausência de plágio, e um resultado alto pode decorrer de referências, citações corretas, frases técnicas ou versões próprias; examinar o relatório e as fontes é indispensável \cite{crossrefSimilarity}.
+No mapa, a associação de um único bioma predominante a cada estado simplifica uma realidade em que biomas e transições não coincidem necessariamente com fronteiras estaduais. O recurso serve como exploração introdutória e não deve ser apresentado como cartografia oficial ou substituto dos limites temáticos do IBGE \cite{ibge}. A qualidade científica do conteúdo depende de uma auditoria de afirmações e fontes que ainda não foi concluída.
 
-\subsection{Desenho e unidade de análise}
+\section{Integridade e apresentação acadêmica}
+A redação deste artigo separa funcionalidades efetivamente implementadas de avaliações ainda não realizadas. Fontes técnicas são citadas junto às afirmações que sustentam, e as referências incluem URLs rastreáveis. A versão final deverá seguir o manual institucional e as normas ABNT aplicáveis à apresentação, às citações e às referências; o uso de uma classe LaTeX não comprova conformidade automática. As diretrizes do CNPq reforçam a responsabilidade de atribuição e integridade das fontes \cite{cnpq}.
+\label{page:referencial:end}
 
-Propõe-se um estudo de caso exploratório, descritivo e de métodos predominantemente quantitativos, com questionário remoto assíncrono e tarefas de interpretação. O caso é a experiência de uso da versão congelada do Planeta Consciente. A unidade de análise é a resposta de participante a cada tarefa ou item de percepção. A amostra planejada é de 9 a 20 participantes por conveniência; esse número serve para exploração formativa, não para estimar prevalências, representar um público amplo ou testar hipóteses com poder estatístico. Faixa etária, público-alvo, critérios de inclusão, canal de recrutamento e vínculo dos participantes ainda são decisões pendentes.
+\chapter{Resultados e discussão}
+O artefato implementado reúne uma página única com navegação por âncoras e sete áreas de conteúdo. A seção de temas seleciona tópicos e apresenta séries em gráficos de barras, linhas ou setores; a área de atitudes atualiza progresso enquanto a página está aberta; curiosidades usam controles expansíveis; e o mapa permite selecionar estado e filtrar biomas. As notícias são blocos editoriais estáticos, sem integração com serviço externo de notícias. Essas funções foram confirmadas na composição da página e nos componentes e dados do código-fonte.
 
-\subsection{Escopo do instrumento}
+A exportação estática foi construída e publicada automaticamente no endereço do projeto. A verificação remota do GitHub Actions confirmou a conclusão bem-sucedida do build de produção e da publicação no Pages. A Release \texttt{v0.2.0-protocolo.7} também disponibilizou ZIP do site e PDFs acadêmicos; o novo artigo será incorporado à próxima versão. Esses resultados demonstram entrega e reprodutibilidade do processo de build, não qualidade de conteúdo ou impacto educacional.
 
-O instrumento deverá caber em uma sessão curta e incluir: (1) uma tarefa de explicar com as próprias palavras um gráfico ambiental selecionado; (2) uma tarefa para selecionar um estado no mapa e identificar/explicar o bioma exibido; (3) itens sobre clareza e confiança percebidas após cada tarefa; e (4) uma pergunta opcional para relatar dificuldade ou sugestão. O sucesso em localizar a fonte foi marcado como resultado desejado, mas não como tarefa selecionada; decidir antes da submissão se haverá uma tarefa explícita de busca de fonte. A ordem, os estímulos, o gabarito, o limiar de resposta aceitável e as regras de codificação ainda precisam ser fechados e versionados.
+A inspeção do artefato identificou quatro limites relevantes. Primeiro, alguns dados e notas de gráficos mencionam fontes em termos gerais, sem ligação individual e metadados completos por afirmação. Segundo, o mapa usa uma categoria predominante por estado, portanto comunica uma simplificação espacial. Terceiro, as atitudes sustentáveis são armazenadas apenas no estado da interface e não persistem após recarregamento. Quarto, o layout inclui a ferramenta Vercel Analytics em produção; antes de uso educacional ampliado, é necessário documentar sua configuração, os dados tratados e as informações de privacidade conforme a LGPD \cite{lgpd}. Nenhum desses pontos foi resolvido por testes com usuários.
 
-O gabarito deve ser validado a partir de fontes públicas adequadas, incluindo IBGE para biomas e INPE/TerraBrasilis quando houver indicador de desmatamento \cite{ibgebiomas,inpeprodes}. Acessibilidade não será inferida de autorrelatos nem de uma pergunta genérica: se incluída, precisa de tarefas, tecnologias assistivas e critérios próprios. Recomenda-se limitar a avaliação com participantes à compreensão e clareza, realizando separadamente uma inspeção técnica de acessibilidade antes de ampliar o escopo.
+Também permanece uma divergência cadastral a conferir: os dados fornecidos para a capa informam BR-316, km 24 e CEP 64022-990, enquanto publicação do Diário Oficial do Piauí associa o código INEP 22161201 ao CETI Lucas Meireles, zona rural de Teresina, com endereço em km 22 e CEP 64390-000 \cite{doepi2025}. O nome institucional foi associado ao código; endereço e CEP devem ser confirmados com a escola antes da entrega definitiva.
+\label{page:resultados:end}
 
-\subsection{Procedimento previsto}
+\chapter{Considerações finais}\label{page:consideracoes:start}
+O Projeto Integrador resultou no desenvolvimento e na publicação do Planeta Consciente, uma aplicação estática que reúne conteúdos temáticos, gráficos, curiosidades, ações sustentáveis, notícias e um mapa interativo. A arquitetura baseada em Next.js, React, módulos de dados e componentes especializados permitiu gerar os arquivos estáticos e automatizar sua publicação no GitHub Pages. Os objetivos de implementação e entrega técnica foram atendidos conforme as verificações de build e implantação executadas.
 
-\begin{enumerate}[label=\arabic*.]
-  \item Consultar orientação e instância ética da instituição; confirmar público, elegibilidade e necessidade de submissão. Não recrutar nem coletar antes da decisão formal e de qualquer aprovação aplicável.
-  \item Congelar uma versão do site, registrar tag e hash do commit, preparar tarefas, respostas de referência, critérios de correção, aviso de pesquisa, consentimento e plano de dados.
-  \item Revisar o instrumento com pessoas qualificadas e verificar acessibilidade/usabilidade técnica. Qualquer piloto com participantes também depende da definição ética institucional.
-  \item Após liberação ética, recrutar dentro do grupo aprovado e aplicar o formulário sem exigir login ou identificadores desnecessários; informar voluntariedade, riscos, uso, retenção, contato e limites de retirada em coleta anônima.
-  \item Exportar somente os dados autorizados para armazenamento restrito, conferir a configuração da plataforma e remover metadados de identificação antes de análise.
-  \item Encerrar coleta no limite aprovado ou ao atingir o máximo previsto; documentar desvios, respostas incompletas e exclusões sem identificar participantes.
-\end{enumerate}
+O resultado não autoriza concluir que o site melhora aprendizagem ou comportamento ambiental: não houve estudo com participantes, teste de usabilidade, avaliação formal de acessibilidade ou medição de desempenho educacional. Para evoluir o projeto, recomenda-se vincular cada dado ambiental a fonte verificável, rever simplificações do mapa, avaliar acessibilidade com critérios próprios, definir transparência e governança de Analytics e realizar testes de experiência com autorização e salvaguardas adequadas. O endereço escolar divergente também deve ser confirmado antes do protocolo final. Assim, o produto é uma entrega técnica funcional com agenda explícita de validação factual e de experiência de uso.
+\label{page:consideracoes:end}
 
-\subsection{Medidas e análise}
-
-Respostas às tarefas serão codificadas por critérios definidos previamente e resumidas como contagens, proporções e denominadores explícitos por questão. Confiança e clareza serão reportadas como distribuições descritivas, mantendo cada item separado; comentários voluntários serão agrupados em categorias temáticas descritivas sem pretensão de saturação. Resultados ausentes ou ambíguos serão mostrados, não convertidos automaticamente em erro. Não serão calculadas generalizações para todos os estudantes/usuários, nem inferido efeito de aprendizagem ou melhoria causada por interatividade. Se forem usadas respostas abertas, o texto passará por revisão para remover identificadores antes de qualquer compartilhamento.
-
-\subsection{Reprodutibilidade}
-
-O pacote de pesquisa deverá conter protocolo, versão do site, instrumento aprovado para compartilhamento, gabarito e fontes, critérios de análise, script de síntese e PDF. Repositório público poderá receber código, materiais e somente resultados agregados cuja divulgação esteja autorizada. Não serão publicados consentimentos, respostas brutas, listas de recrutamento, contatos ou texto livre que permita identificação. Cada afirmação metodológica deverá estar vinculada a uma referência verificável, em linha com as diretrizes de integridade do CNPq \cite{cnpq}.
-
-\section{Ética, privacidade e integridade}
-
-Este manuscrito descreve planejamento, não aprovação ética. A autora assinalou que o estudo envolveria pessoas e que não sabe se precisa de avaliação; portanto, não haverá recrutamento, convite, formulário ativo, piloto com participantes ou coleta até a instituição indicar formalmente o procedimento e ocorrer a aprovação exigida. A Lei nº 14.874/2024 e o Decreto nº 12.651/2025 instituem e regulamentam o sistema nacional de ética; a Resolução CNS nº 510/2016 também dispõe sobre pesquisas em Ciências Humanas e Sociais com dados diretamente obtidos dos participantes. A exceção nela descrita para pesquisa de opinião pública com participantes não identificados não deve ser presumida para tarefas que avaliam compreensão, experiência ou aprendizagem. A aplicabilidade e a instância responsável devem ser confirmadas pelo curso/instituição e pelo CEP competente antes de qualquer coleta \cite{brasil14874,brasil12651,cns510}.
-
-O formulário ainda não define a faixa etária nem o grupo recrutável. Se o público incluir menores, a proposta, consentimento/assentimento e autorização de responsáveis deverão ser revistos com a instituição; isso pode inviabilizar o cronograma informado. Como se trata de trabalho de conclusão/graduação, confirmar também a responsabilidade de orientação e submissão que a instituição exige. A previsão de 9 a 20 pessoas é uma estimativa, não autorização de recrutamento nem garantia de viabilidade.
-
-Antes de abrir formulário, deve-se definir com a instituição os papéis de controlador e operadores, finalidade, hipótese legal, minimização, aviso, acesso, retenção, descarte e proteção contra reidentificação. A LGPD tem regras próprias para fins acadêmicos e de pesquisa, mas não representa dispensa geral; a aplicação dos arts. 7º e 11 e a base legal concreta precisam de análise institucional. A plataforma de coleta deve ser configurada para não exigir login, e-mail ou identificador quando não necessário; verificar logs, metadados, hospedagem, compartilhamentos e possibilidade de retirada. Nunca enviar respostas para ferramentas de IA nem publicar dados brutos, consentimentos, lista de participantes ou comentários identificáveis no repositório público \cite{brasil13709,anpd}.
-
-As fontes serão creditadas, referências verificadas, decisões e limitações relatadas e contribuições de autoria confirmadas pela própria equipe. A diretriz de integridade do CNPq consultada foi atualizada em 2026 e inclui transparência sobre o uso de inteligência artificial generativa para pesquisas sob seu âmbito; as regras específicas de financiamento, instituição e veículo serão verificadas antes da submissão \cite{cnpq}.
-
-\section{Plano de trabalho e critérios de conclusão}
-
-O marco informado é 30 de outubro de 2026, embora também tenha sido marcado “sem prazo definido”; confirmar qual compromisso do curso prevalece. Um cronograma de quatro semanas pode contemplar: (1) consultar instituição/CEP e fechar o público; (2) congelar instrumento, tarefas e gabarito; (3) somente após liberação ética, coletar e analisar; (4) revisar manuscrito e artefatos. A etapa de recrutamento/coleta depende de prazo e aprovação que ainda são desconhecidos. Se a avaliação ética não couber no prazo, concluir como protocolo e inspeção técnica sem participantes, sem apresentar essa alternativa como estudo com usuários.
-
-O protocolo estará pronto para estudo com participantes somente quando público, tarefas, gabarito, questionário, consentimento, política de dados e decisão/aprovação ética estiverem documentados. Um artigo de resultados exigirá dados realmente coletados após essa autorização, denominadores, análise reproduzível, limitações e revisão humana. A versão atual não é artigo com resultados.
-
-\section{Limitações previstas}
-
-Um único site e uma amostra de conveniência de 9 a 20 pessoas limitam qualquer transferência dos achados. O grupo-alvo e a faixa etária não estão definidos. Um questionário assíncrono pode não capturar contexto, estratégia de navegação ou barreiras de acessibilidade; a correção das tarefas depende de gabarito validado. Autorrelato de clareza/confiança não mede aprendizagem, e observação após uma exposição não demonstra ganho causado pelo site. O prazo pode ser incompatível com avaliação ética e recrutamento.
-
-\section{Conclusão}
-
-Foi especificado um protocolo exploratório para estudar compreensão e experiência de uso no Planeta Consciente, com tarefas sobre gráficos e biomas e medidas descritivas de clareza e confiança. Nenhum resultado foi coletado. Antes do estudo, faltam definir o público, decidir a tarefa de localização de fontes, finalizar instrumento e gabarito, identificar orientação institucional e obter a decisão/aprovação ética necessária. Se esses requisitos não couberem no prazo, o projeto deve permanecer como protocolo ou retornar ao recorte documental sem participantes.
-
-\section*{Disponibilidade de materiais}
-
-Repositório: \url{https://github.com/ana-santiago-2008/planeta-consciente}. O protocolo e o código serão versionados. Nesta etapa não há dados de participantes; qualquer instrumento, resultado ou material futuro só será publicado após revisão ética, LGPD, consentimento e autorização de divulgação.
-
-\section*{Agradecimentos}
-
-Não informado nesta versão. Incluir apenas contribuições reconhecidas com autorização e sem atribuir autoria indevida.
-
+\postextual
 \begin{thebibliography}{99}
-
-\bibitem{sigsoft}
-ACM SIGSOFT. \textit{Empirical standards for software engineering}. [S. l.], [s. d.]. Disponível em: \url{https://www2.sigsoft.org/EmpiricalStandards/}. Acesso em: 2 out. 2026.
-
-\bibitem{abnt6022}
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6022: informação e documentação: artigo em publicação periódica técnica e/ou científica: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2018. Catálogo oficial: \url{https://www.abntcatalogo.com.br/}. Acesso em: 2 out. 2026.
-
-\bibitem{abnt6023}
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6023: informação e documentação: referências: elaboração}. 3. ed. Rio de Janeiro: ABNT, 2025. A versão de 2025 substitui a de 2018 com Emenda 1. Ver guia de atualização da Universidade Federal do Espírito Santo: \url{https://engenhariaedesenvolvimentosustentavel.ufes.br/sites/engenhariaedesenvolvimentosustentavel.ufes.br/files/field/anexo/abnt_nbr_6023_-_referencias.pdf}. Acesso em: 2 out. 2026.
-
-\bibitem{abnt10520}
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 10520: informação e documentação: citações em documentos: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2023. Ver orientação da Biblioteca da Unicamp: \url{https://www.iel.unicamp.br/wp-content/uploads/2024/09/guia_nbr10520_2023_ult.-versao.pdf}. Acesso em: 2 out. 2026.
-
-\bibitem{abnt6024}
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6024: informação e documentação: numeração progressiva das seções de um documento: apresentação}. Rio de Janeiro: ABNT, 2012. Catálogo oficial: \url{https://www.abntcatalogo.com.br/}. Acesso em: 2 out. 2026.
-
-\bibitem{abnt6028}
-ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS. \textit{ABNT NBR 6028: informação e documentação: resumo, resenha e recensão: apresentação}. 2. ed. Rio de Janeiro: ABNT, 2021. Ver orientação da Biblioteca Central da PUCRS: \url{https://biblioteca.pucrs.br/noticias/atualizacao-da-norma-de-resumo-abnt-nbr-6028-21-maio-2021/}. Acesso em: 2 out. 2026.
-
-\bibitem{ufes14724}
-UNIVERSIDADE FEDERAL DO ESPÍRITO SANTO. \textit{ABNT NBR 14724: trabalhos acadêmicos: apresentação}. 4. ed. Vitória: UFES, 2024. Disponível em: \url{https://engenhariaedesenvolvimentosustentavel.ufes.br/sites/engenhariaedesenvolvimentosustentavel.ufes.br/files/field/anexo/abnt_nbr_14724.pdf}. Acesso em: 2 out. 2026.
-
-\bibitem{abntex2}
-ABNTEX. \textit{abnTeX2: classe LaTeX e estilos bibliográficos compatíveis com normas da ABNT}. [S. l.], [s. d.]. Disponível em: \url{https://github.com/abntex/abntex2}. Acesso em: 2 out. 2026.
-
-\bibitem{brasil13709}
-BRASIL. \textit{Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais}. Brasília, DF: Presidência da República, 2018. Texto compilado. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm}. Acesso em: 2 out. 2026.
-
-\bibitem{brasil14874}
-BRASIL. \textit{Lei nº 14.874, de 28 de maio de 2024: dispõe sobre a pesquisa com seres humanos e institui o Sistema Nacional de Ética em Pesquisa com Seres Humanos}. Brasília, DF: Presidência da República, 2024. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14874.htm}. Acesso em: 2 out. 2026.
-
-\bibitem{brasil12651}
-BRASIL. \textit{Decreto nº 12.651, de 7 de outubro de 2025: regulamenta a Lei nº 14.874, de 28 de maio de 2024}. Brasília, DF: Presidência da República, 2025. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/decreto/d12651.htm}. Acesso em: 2 out. 2026.
-
-\bibitem{cns510}
-BRASIL. Conselho Nacional de Saúde. \textit{Resolução nº 510, de 7 de abril de 2016: normas aplicáveis a pesquisas em Ciências Humanas e Sociais}. Brasília, DF: CNS, 2016. Em vigor; confirmar interpretação e articulação com a legislação superveniente junto à instituição e ao CEP. Disponível em: \url{https://www.gov.br/conselho-nacional-de-saude/pt-br/atos-normativos/resolucoes/2016/resolucao-no-510.pdf/view}. Acesso em: 2 out. 2026.
-
-\bibitem{anpd}
-BRASIL. Autoridade Nacional de Proteção de Dados. \textit{Guia orientativo: tratamento de dados pessoais para fins acadêmicos e para a realização de estudos e pesquisas}. Brasília, DF: ANPD, 2024. Disponível em: \url{https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-tratamento-de-dados-pessoais-para-fins-academicos-e-para-a-realizacao-de-estudos-e-pesquisas}. Acesso em: 2 out. 2026.
-
-\bibitem{cnpq}
-BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Brasília, DF: CNPq, atualizado em 2026. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 2 out. 2026.
-
-\bibitem{copeTextRecycle}
-COMMITTEE ON PUBLICATION ETHICS. \textit{Text recycling guidelines}. [S. l.]: COPE, 2016. Disponível em: \url{https://publicationethics.org/files/Web_A29298_COPE_Text_Recycling.pdf}. Acesso em: 2 out. 2026.
-
-\bibitem{crossrefSimilarity}
-CROSSREF. \textit{Understanding your Similarity Report}. [S. l.]: Crossref, [s. d.]. Disponível em: \url{https://www.crossref.org/documentation/similarity-check/similarity-report-understand/}. Acesso em: 2 out. 2026.
-
-\bibitem{copyspider}
-COPYSPIDER. \textit{Funcionamento}. [S. l.], [s. d.]. Disponível em: \url{https://copyspider.com.br/main/pt-br/how-it-works}. Acesso em: 2 out. 2026.
-
-\bibitem{zotero}
-ZOTERO. \textit{Word processor plugins}. [S. l.], [s. d.]. Disponível em: \url{https://www.zotero.org/support/word_processor_integration}. Acesso em: 2 out. 2026.
-
-\bibitem{ibgebiomas}
-INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. \textit{Biomas e sistema costeiro-marinho do Brasil}. Rio de Janeiro: IBGE, [s. d.]. Disponível em: \url{https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html?lang=pt-BR}. Acesso em: 2 out. 2026.
-
-\bibitem{inpeprodes}
-BRASIL. Instituto Nacional de Pesquisas Espaciais. \textit{TerraBrasilis: dados e informações sobre monitoramento ambiental}. São José dos Campos: INPE, [s. d.]. Disponível em: \url{https://terrabrasilis.dpi.inpe.br/}. Acesso em: 2 out. 2026.
-
+\label{page:referencias:start}
+\bibitem{nextstatic} VERCEL. \textit{Static exports}. Next.js Documentation. Disponível em: \url{https://nextjs.org/docs/app/guides/static-exports}. Acesso em: 6 out. 2026.
+\bibitem{reactstate} META OPEN SOURCE. \textit{Managing state}. React Documentation. Disponível em: \url{https://react.dev/learn/managing-state}. Acesso em: 6 out. 2026.
+\bibitem{recharts} RECHARTS GROUP. \textit{Recharts: composable charting library built on React components}. Disponível em: \url{https://recharts.org/}. Acesso em: 6 out. 2026.
+\bibitem{ghpages} GITHUB. \textit{Deploying your website automatically}. GitHub Docs. Disponível em: \url{https://docs.github.com/en/get-started/start-your-journey/deploying-your-website-automatically}. Acesso em: 6 out. 2026.
+\bibitem{ibge} INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA. \textit{Biomas e Sistema Costeiro-Marinho do Brasil}. Disponível em: \url{https://www.ibge.gov.br/geociencias/informacoes-ambientais/vegetacao/15842-biomas.html?lang=pt-BR}. Acesso em: 6 out. 2026.
+\bibitem{doepi2025} PIAUÍ. Diário Oficial do Estado. \textit{Portaria sobre alteração de vinculação administrativa do CETI Lucas Meireles}, publicada em 23 jul. 2025. Disponível em: \url{https://www.diario.pi.gov.br/doe/files/diarios/anexo/717cef99-df56-4a1c-81e1-e21f586dbf0e/DOEPI_139_2025.pdf}. Acesso em: 6 out. 2026.
+\bibitem{cnpq} BRASIL. Conselho Nacional de Desenvolvimento Científico e Tecnológico. \textit{Diretrizes de integridade na pesquisa apoiada pelo CNPq}. Disponível em: \url{https://www.gov.br/cnpq/pt-br/composicao/comissao-de-integridade/diretrizes}. Acesso em: 6 out. 2026.
+\bibitem{lgpd} BRASIL. \textit{Lei nº 13.709, de 14 de agosto de 2018: Lei Geral de Proteção de Dados Pessoais}. Texto compilado. Disponível em: \url{https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709compilado.htm}. Acesso em: 6 out. 2026.
 \end{thebibliography}
-
+\label{page:referencias:end}
 \end{document}
